@@ -7,11 +7,11 @@ The goal of this project is to work together to build a “smart” shopping lis
 This project is based on [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/), a mobile web app I built for my own use last year. You’re welcome to look at the [GitHub repo for that site](https://github.com/segdeha/ineedtobuy.xyz) if you get stuck and want a hint!
 
 ### Locations for things
-* Site: {link to cohort live site}
-* Repo: {link to cohort repo}
-* Clone URL: {clone URL}
-* Issue list: {link to cohort repo issues}
-* Database: {link to cohort firebase database}
+* Site: https://tcl-7-smart-shopping-list.netlify.app/
+* Repo: https://github.com/the-collab-lab/tcl-7-smart-shopping-list
+* Clone URL: https://github.com/the-collab-lab/tcl-7-smart-shopping-list.git
+* Issue list: https://github.com/the-collab-lab/tcl-7-smart-shopping-list/projects/1
+* Database: https://console.firebase.google.com/u/0/project/tcl-7-smart-shopping-list/
 
 ### Project cadence & duration
 The project is expected to take 40 hours per participant, spread over 8 weeks.
@@ -20,37 +20,37 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 
 Pairings will go as follows:
 
-#### Week 1, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 1, May 3-9, 2020
+1. Nabil & DeVon
+2. Megan & Tanzima
 
-#### Week 2, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 2, May 10-16, 2020
+1. Tanzima & Nabil
+2. DeVon & Megan
 
-#### Week 3, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 3, May 17-23, 2020
+1. Nabil & Megan
+2. DeVon & Tanzima
 
-#### Week 4, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 4, May 24-30, 2020
+1. Nabil & DeVon
+2. Megan & Tanzima
 
-#### Week 5, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 5, May 31-June 6, 2020
+1. Tanzima & Nabil
+2. DeVon & Megan
 
-#### Week 6, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 6, June 7-13, 2020
+1. Nabil & Megan
+2. DeVon & Tanzima
 
-#### Week 7, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 7, June 14-20, 2020
+1. Nabil & DeVon
+2. Megan & Tanzima
 
-#### Week 8, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+#### Week 8, June 21-27, 2020
+1. Tanzima & Nabil
+2. DeVon & Megan
 
 ### Pair Programming
 
@@ -93,7 +93,7 @@ A week sounds like a long time in some ways, but part of working on a team is ac
 Having watched many cohorts before yours, our advice is to front-load the work as much as possible in the first couple of days of each week. Some of the stories are trickier than they appear on the surface!
 
 ### How to know what to do
-The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board]({link to the cohort repo project board}) on GitHub.
+The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board](https://github.com/the-collab-lab/tcl-7-smart-shopping-list/projects/1) on GitHub.
 
 A task or story is “done” when the following are all true:
 
