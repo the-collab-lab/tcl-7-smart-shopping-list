@@ -2,6 +2,8 @@
 
 ## Cohort Participants
 
+* Nabil Kazerouni
+
 ## Mentors
 
 * Stacie Taylor-Cima
