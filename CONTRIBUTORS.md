@@ -4,6 +4,8 @@
 
 * Nabil Kazerouni
 
+* Tanzima Chowdhury
+
 ## Mentors
 
 * Stacie Taylor-Cima
