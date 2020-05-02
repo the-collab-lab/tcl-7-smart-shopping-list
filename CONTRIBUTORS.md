@@ -8,6 +8,8 @@
 
 * DeVon Thompson 
 
+* Megan McKissack
+
 ## Mentors
 
 * Stacie Taylor-Cima
