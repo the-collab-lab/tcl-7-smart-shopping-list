@@ -6,42 +6,25 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Router>
-          <div>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/listview">
+              <Listview />
+            </Route>
+            <Route path="/additem">
+              <Additem />
+            </Route>
+          </Switch>
+          <footer>
             <nav>
-              <ul>
-                <li>
-                  <Link to="/listview">List</Link>
-                </li>
-                <li>
-                  <Link to="/additem">add item</Link>
-                </li>
-              </ul>
+              <Link to="/listview">List</Link>
+
+              <Link to="/additem">add item</Link>
             </nav>
-            <Switch>
-              <Route path="/listview">
-                <Listview />
-              </Route>
-              <Route path="/additem">
-                <Additem />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </header>
+          </footer>
+        </div>
+      </Router>
     </div>
   );
 }

@@ -20,3 +20,14 @@
 .App-link {
   color: #09d3ac;
 }
+
+footer nav {
+  display: flex;
+  width: 100%;
+  background-color: aqua;
+  position: fixed;
+}
+
+footer nav a {
+  flex-grow: 1;
+}
