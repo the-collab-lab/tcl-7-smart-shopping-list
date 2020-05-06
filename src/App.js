@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div>
+        <main>
           <Switch>
             <Route path="/listview">
               <Listview />
@@ -16,14 +16,13 @@ function App() {
               <Additem />
             </Route>
           </Switch>
-          <footer>
-            <nav>
-              <Link to="/listview">List</Link>
-
-              <Link to="/additem">add item</Link>
-            </nav>
-          </footer>
-        </div>
+        </main>
+        <footer>
+          <nav>
+            <Link to="/listview">List</Link>
+            <Link to="/additem">add item</Link>
+          </nav>
+        </footer>
       </Router>
     </div>
   );

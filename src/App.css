@@ -21,13 +21,28 @@
   color: #09d3ac;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  width: 100%;
+}
+
 footer nav {
   display: flex;
   width: 100%;
   background-color: aqua;
-  position: fixed;
 }
 
 footer nav a {
   flex-grow: 1;
+  width: 100%;
 }
