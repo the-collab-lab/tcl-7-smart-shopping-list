@@ -1,7 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 
 function App() {
   return (
@@ -19,8 +24,12 @@ function App() {
         </main>
         <footer>
           <nav>
-            <Link to="/listview">List</Link>
-            <Link to="/additem">add item</Link>
+            <NavLink to="/listview">
+              <img src="/img/list.svg" alt="view list" />
+            </NavLink>
+            <NavLink to="/additem">
+              <img src="/img/add.svg" alt="add item" />
+            </NavLink>
           </nav>
         </footer>
       </Router>
