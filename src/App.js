@@ -1,7 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { FirestoreCollection } from 'react-firestore';
+import { ListComponent } from './getList';
 
+//import FirestoreCollection from './getList';
 function App() {
   return (
     <div className="App">
@@ -19,6 +22,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <ListComponent />
     </div>
   );
 }
