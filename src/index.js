@@ -1,21 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import firebase from '@firebase/app';
-import '@firebase/firestore';
+import { fb } from './lib/firebase';
 import { FirestoreProvider } from 'react-firestore';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const config = {
-  apiKey: 'AIzaSyBOsjQqoNjd1M2nLK7vAmZoyUlh9eY3VQk',
-  projectId: 'tcl-7-smart-shopping-list',
-};
-
-firebase.initializeApp(config);
-
 ReactDOM.render(
-  <FirestoreProvider firebase={firebase}>
+  <FirestoreProvider firebase={fb}>
     <App />
   </FirestoreProvider>,
   document.getElementById('root'),
