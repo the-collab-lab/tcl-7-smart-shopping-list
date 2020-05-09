@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { fb } from '../lib/firebase';
-import { FirestoreProvider } from 'react-firestore';
+// import { FirestoreProvider } from 'react-firestore';
 
 class AddItem extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class AddItem extends React.Component {
     db.settings({
       timestampsInSnapshots: true,
     });
-    const itemRef = db.collection('items').add({
+    db.collection('items').add({
       itemname: this.state.itemname,
     });
     this.setState({
