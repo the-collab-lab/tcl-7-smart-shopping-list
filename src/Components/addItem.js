@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { fb } from '../lib/firebase';
 import { FirestoreProvider } from 'react-firestore';
 
-class Item extends React.Component {
+class AddItem extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -42,4 +42,4 @@ class Item extends React.Component {
     );
   }
 }
-export default Item;
+export default AddItem;
