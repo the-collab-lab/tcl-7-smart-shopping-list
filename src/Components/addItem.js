@@ -1,13 +1,11 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { fb } from '../lib/firebase';
-// import { FirestoreProvider } from 'react-firestore';
 
 class AddItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      itemname: '',
+      itemName: '',
     };
   }
   updateInput = e => {
@@ -18,14 +16,11 @@ class AddItem extends React.Component {
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.settings({
-      timestampsInSnapshots: true,
-    });
     db.collection('items').add({
-      itemname: this.state.itemname,
+      itemName: this.state.itemName,
     });
     this.setState({
-      itemname: '',
+      itemName: '',
     });
   };
   render() {
@@ -33,9 +28,9 @@ class AddItem extends React.Component {
       <form onSubmit={this.addItem}>
         <input
           type="text"
-          name="itemname"
+          name="itemName"
           onChange={this.updateInput}
-          value={this.state.itemname}
+          value={this.state.itemName}
         />
         <button type="submit">Submit</button>
       </form>

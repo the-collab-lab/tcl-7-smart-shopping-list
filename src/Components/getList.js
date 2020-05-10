@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { FirestoreDocument } from 'react-firestore';
 
 class GetList extends React.Component {
