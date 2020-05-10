@@ -14,20 +14,20 @@ function App() {
       <Router>
         <main>
           <Switch>
-            <Route path="/listview">
+            <Route path="/list-view">
               <Listview />
             </Route>
-            <Route path="/additem">
+            <Route path="/add-item">
               <Additem />
             </Route>
           </Switch>
         </main>
         <footer>
           <nav>
-            <NavLink to="/listview">
+            <NavLink to="/list-view">
               <img src="/img/list.svg" alt="view list" />
             </NavLink>
-            <NavLink to="/additem">
+            <NavLink to="/add-item">
               <img src="/img/add.svg" alt="add item" />
             </NavLink>
           </nav>
