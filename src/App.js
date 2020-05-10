@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import GetList from './Components/getList.js';
+import AddItem from './Components/addItem.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +12,8 @@ import {
 function App() {
   return (
     <div className="App">
+      <GetList />
+      <AddItem />
       <Router>
         <main>
           <Switch>
