@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
+import getToken from './lib/token.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,6 +42,7 @@ function App() {
 }
 
 function Listview() {
+  const token = getToken();
   return <h2>This is the list view!</h2>;
 }
 
