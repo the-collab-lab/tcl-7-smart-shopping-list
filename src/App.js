@@ -43,6 +43,8 @@ function App() {
 
 function Listview() {
   const token = getToken();
+  const myStorage = window.localStorage;
+  myStorage.setItem('token', token);
   return <h2>This is the list view!</h2>;
 }
 
