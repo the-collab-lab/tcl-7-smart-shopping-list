@@ -12,8 +12,6 @@ import {
 function App() {
   return (
     <div className="App">
-      <GetList />
-      <AddItem />
       <Router>
         <main>
           <Switch>
@@ -21,7 +19,7 @@ function App() {
               <Listview />
             </Route>
             <Route path="/add-item">
-              <Additem />
+              <ItemForm />
             </Route>
           </Switch>
         </main>
@@ -41,11 +39,16 @@ function App() {
 }
 
 function Listview() {
-  return <h2>This is the list view!</h2>;
+  return <GetList />;
 }
 
-function Additem() {
-  return <h2>This is where you'd add an item!</h2>;
+function ItemForm() {
+  return (
+    <div>
+      <h2>This is where you'd add an item!</h2>
+      <AddItem />
+    </div>
+  );
 }
 
 export default App;
