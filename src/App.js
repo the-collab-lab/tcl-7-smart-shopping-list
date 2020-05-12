@@ -22,6 +22,9 @@ function App() {
             <Route path="/add-item">
               <ItemForm />
             </Route>
+            <Route path="/">
+              <SignIn />
+            </Route>
           </Switch>
         </main>
         <footer>
@@ -53,6 +56,24 @@ function ItemForm() {
       <AddItem />
     </div>
   );
+}
+
+class SignIn extends React.Component {
+  storeTokenOnClient = () => {
+    const myStorage = window.localStorage;
+    myStorage.setItem('token', getToken());
+  };
+
+  render() {
+    return (
+      <p>
+        You can also{' '}
+        <a onClick={this.storeTokenOnClient} href="/list-view">
+          create a new shopping list{' '}
+        </a>
+      </p>
+    );
+  }
 }
 
 export default App;
