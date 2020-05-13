@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { fb } from '../lib/firebase';
 
 class AddItem extends React.Component {
@@ -25,16 +26,28 @@ class AddItem extends React.Component {
   };
   render() {
     return (
-      <form onSubmit={this.addItem}>
-        <input
-          type="text"
-          name="itemName"
-          onChange={this.updateInput}
-          value={this.state.itemName}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <form onSubmit={this.addItem}>
+          <input
+            type="text"
+            name="itemName"
+            onChange={this.updateInput}
+            value={this.state.itemName}
+          />
+          <button type="submit">Submit</button>
+        </form>
+        <button id="soon" onclick="frequent()">
+          Soon
+        </button>
+        <button id="kindaSoon" onclick="frequent()">
+          Kinda soon
+        </button>
+        <button id="prettySoon" onclick="frequent()">
+          Kinda soon
+        </button>
+      </div>
     );
   }
 }
+
 export default AddItem;
