@@ -7,6 +7,7 @@ class AddItem extends React.Component {
     super();
     this.state = {
       itemName: '',
+      purchaseFrequency: 0,
     };
   }
   updateInput = e => {
@@ -14,14 +15,24 @@ class AddItem extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  updateFrequency = e => {
+    this.setState({
+      [e.target.value]: e.target.value,
+    });
+  };
+
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
     db.collection('items').add({
       itemName: this.state.itemName,
+      purchaseFrequency: this.state.purchaseFrequency,
     });
+
     this.setState({
       itemName: '',
+      purchaseFrequency: 0,
     });
   };
   render() {
@@ -35,6 +46,15 @@ class AddItem extends React.Component {
             value={this.state.itemName}
           />
           <button type="submit">Submit</button>
+          <br></br>
+          <label>
+            How soon do you expect to buy this again?
+            <select value={this.state.value} onChange={this.updateFrequency}>
+              <option value="7">Soon</option>
+              <option value="14">Pretty Soon</option>
+              <option value="30">Not Soon</option>
+            </select>
+          </label>
         </form>
         <button id="soon" onclick="frequent()">
           Soon
@@ -43,7 +63,7 @@ class AddItem extends React.Component {
           Kinda soon
         </button>
         <button id="prettySoon" onclick="frequent()">
-          Kinda soon
+          pretty soon
         </button>
       </div>
     );
