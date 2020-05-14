@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { hasLocalToken, setLocalToken, getLocalToken } from './lib/token.js';
+import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import {
