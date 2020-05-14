@@ -1,27 +1,27 @@
 import React from 'react';
-import { FirestoreDocument } from 'react-firestore';
-import { initFirestorter, Collection } from 'firestorter';
-import { observer } from 'mobx-react';
-import { fb } from '../lib/firebase';
-//import getLocalToken from '../lib/token.js';
+import { FirestoreCollection } from 'react-firestore';
 
-initFirestorter({ firebase: fb });
+// Can we get the collection?
+// this refers to a single document not the collection
+// map over the collection pulling out the path for each one
+// and displaying it as a firestoredocument component
 
 class GetList extends React.Component {
   render() {
     return (
-      // Can we get the collection?
-      // this refers to a single document not the collection
-      // map over the collection pulling out the path for each one
-      // and displaying it as a firestoredocument component
-      <FirestoreDocument
-        path="items/tIA3kp24eSWYTNKxA3wl"
+      <FirestoreCollection
+        path="items/"
         render={({ isLoading, data }) => {
           return isLoading ? (
             <div>loading...</div>
           ) : (
             <div>
-              <h2>Grocery Items: {data.itemname}</h2>
+              <h1>Groceries</h1>
+              <ul>
+                {data.map(item => (
+                  <li key={item.id}>{item.itemName}</li>
+                ))}
+              </ul>
             </div>
           );
         }}
@@ -29,4 +29,5 @@ class GetList extends React.Component {
     );
   }
 }
+
 export default GetList;
