@@ -9,7 +9,7 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import { render } from 'react-dom';
+//import { render } from 'react-dom';
 
 function App() {
   return (
@@ -55,6 +55,7 @@ class Landing extends React.Component {
 
 function SignIn() {
   // uses setLocalToken to set token to local storage when button is clicked
+  // eslint-disable-next-line
   function handleCreateShoppingListClick() {
     setLocalToken();
   }
@@ -67,7 +68,7 @@ function SignIn() {
       </button>
       <p className="f5 gray">
         You can also{' '}
-        <a className="black" href="">
+        <a className="black" href="/">
           join an existing shopping list
         </a>
         .
