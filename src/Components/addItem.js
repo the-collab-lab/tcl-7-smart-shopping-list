@@ -16,7 +16,7 @@ class AddItem extends React.Component {
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.collection('items').add({
+    db.collection('theList').add({
       itemName: this.state.itemName,
     });
     this.setState({
