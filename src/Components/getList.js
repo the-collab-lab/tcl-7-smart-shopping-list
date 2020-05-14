@@ -1,6 +1,11 @@
 import React from 'react';
 import { FirestoreDocument } from 'react-firestore';
-import getLocalToken from '../lib/token.js';
+import { initFirestorter, Collection } from 'firestorter';
+import { observer } from 'mobx-react';
+import { fb } from '../lib/firebase';
+//import getLocalToken from '../lib/token.js';
+
+initFirestorter({ firebase: fb });
 
 class GetList extends React.Component {
   render() {
