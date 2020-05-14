@@ -1,5 +1,6 @@
 import React from 'react';
 import { fb } from '../lib/firebase';
+import { getLocalToken } from '../lib/token.js';
 
 class AddItem extends React.Component {
   constructor() {
@@ -16,7 +17,7 @@ class AddItem extends React.Component {
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.collection('items').add({
+    db.collection(getLocalToken()).add({
       itemName: this.state.itemName,
     });
     this.setState({
