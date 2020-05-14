@@ -55,15 +55,16 @@ class Landing extends React.Component {
 
 function SignIn() {
   // uses setLocalToken to set token to local storage when button is clicked
+  function handleCreateShoppingListClick() {
+    setLocalToken();
+  }
   return (
-    <form className="shadow bg-white pa2">
+    <form className="shadow bg-white pa2" action="./add-item">
       <h1 className="b f1">Welcome to your smart shopping list!</h1>
       <p className="f3">Tap “Create shopping list” to get started.</p>
-      <a href="./add-item">
-        <button onClick={setLocalToken} className="bg-green ph2 pv1 white f2 b">
-          Create shopping list
-        </button>
-      </a>
+      <button onClick={setLocalToken} className="bg-green ph2 pv1 white f2 b">
+        Create shopping list
+      </button>
       <p className="f5 gray">
         You can also{' '}
         <a className="black" href="">
