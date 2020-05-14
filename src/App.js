@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main>
+        <main className="bg-blue pa1">
           <Switch>
             <Route path="/list-view">
               <Listview />
@@ -56,13 +56,22 @@ class Landing extends React.Component {
 function SignIn() {
   // uses setLocalToken to set token to local storage when button is clicked
   return (
-    <div>
-      <h1>Welcome to your smart shopping list!</h1>
-      <p>Tap “Create shopping list” to get started.</p>
+    <form className="shadow bg-white pa2">
+      <h1 className="b f1">Welcome to your smart shopping list!</h1>
+      <p className="f3">Tap “Create shopping list” to get started.</p>
       <a href="./add-item">
-        <button onClick={setLocalToken}>Create shopping list</button>
+        <button onClick={setLocalToken} className="bg-green ph2 pv1 white f2 b">
+          Create shopping list
+        </button>
       </a>
-    </div>
+      <p className="f5 gray">
+        You can also{' '}
+        <a className="black" href="">
+          join an existing shopping list
+        </a>
+        .
+      </p>
+    </form>
   );
 }
 
