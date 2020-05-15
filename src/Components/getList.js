@@ -1,5 +1,6 @@
 import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
+import { getLocalToken } from '../lib/token.js';
 
 // Can we get the collection?
 // this refers to a single document not the collection
@@ -10,7 +11,7 @@ class GetList extends React.Component {
   render() {
     return (
       <FirestoreCollection
-        path="items/"
+        path={`${getLocalToken()}/`}
         render={({ isLoading, data }) => {
           return isLoading ? (
             <div>loading...</div>
