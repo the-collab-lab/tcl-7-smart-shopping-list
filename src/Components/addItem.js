@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import '../App.css';
 import { fb } from '../lib/firebase';
 
@@ -41,7 +40,7 @@ class AddItem extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="add-item-form">
         <form onSubmit={this.addItem}>
           <input
             type="text"
@@ -59,7 +58,6 @@ class AddItem extends React.Component {
                 value="7"
                 checked={this.state.purchaseFrequency === '7'}
                 onChange={this.updateFrequency}
-                className="form-button"
               />
               Soon
             </label>
@@ -69,7 +67,6 @@ class AddItem extends React.Component {
                 value="14"
                 checked={this.state.purchaseFrequency === '14'}
                 onChange={this.updateFrequency}
-                className="form-button"
               />
               Pretty soon
             </label>
@@ -79,7 +76,6 @@ class AddItem extends React.Component {
                 value="30"
                 checked={this.state.purchaseFrequency === '30'}
                 onChange={this.updateFrequency}
-                className="form-button"
               />
               Not soon
             </label>
