@@ -7,7 +7,7 @@ class AddItem extends React.Component {
     super();
     this.state = {
       itemName: '',
-      purchaseFrequency: 0,
+      purchaseFrequency: 14,
     };
   }
   updateInput = e => {
@@ -18,7 +18,7 @@ class AddItem extends React.Component {
 
   updateFrequency = e => {
     this.setState({
-      [e.target.value]: e.target.value,
+      purchaseFrequency: e.target.value,
     });
   };
 
@@ -32,7 +32,7 @@ class AddItem extends React.Component {
 
     this.setState({
       itemName: '',
-      purchaseFrequency: 0,
+      purchaseFrequency: 14,
     });
   };
   render() {
@@ -45,26 +45,42 @@ class AddItem extends React.Component {
             onChange={this.updateInput}
             value={this.state.itemName}
           />
-          <button type="submit">Submit</button>
+          <br></br>
+          <label>How soon do you expect to buy this again?</label>
           <br></br>
           <label>
-            How soon do you expect to buy this again?
-            <select value={this.state.value} onChange={this.updateFrequency}>
-              <option value="7">Soon</option>
-              <option value="14">Pretty Soon</option>
-              <option value="30">Not Soon</option>
-            </select>
+            <input
+              type="radio"
+              value="7"
+              checked={this.state.purchaseFrequency === '7'}
+              onChange={this.updateFrequency}
+              className="form-button"
+            />
+            Soon
           </label>
+          <label>
+            <input
+              type="radio"
+              value="14"
+              checked={this.state.purchaseFrequency === '14'}
+              onChange={this.updateFrequency}
+              className="form-button"
+            />
+            Pretty soon
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="30"
+              checked={this.state.purchaseFrequency === '30'}
+              onChange={this.updateFrequency}
+              className="form-button"
+            />
+            Not soon
+          </label>
+          <br></br>
+          <button type="submit">Add It</button>
         </form>
-        <button id="soon" onclick="frequent()">
-          Soon
-        </button>
-        <button id="kindaSoon" onclick="frequent()">
-          Kinda soon
-        </button>
-        <button id="prettySoon" onclick="frequent()">
-          pretty soon
-        </button>
       </div>
     );
   }
