@@ -68,7 +68,7 @@ class AddItem extends React.Component {
                 checked={this.state.purchaseFrequency === '14'}
                 onChange={this.updateFrequency}
               />
-              Pretty soon
+              Kind of soon
             </label>
             <label>
               <input
