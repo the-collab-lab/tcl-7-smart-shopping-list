@@ -87,3 +87,7 @@ footer nav img {
   font-size: 16px;
   border-radius: 4px;
 }
+
+.form-button label:hover {
+  background-color: #878787;
+}

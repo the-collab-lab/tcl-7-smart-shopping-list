@@ -22,11 +22,11 @@ class AddItem extends React.Component {
       purchaseFrequency: e.target.value,
     });
   };
-
+  /* user is placeholder for user token when functionality is completed */
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.collection('items').add({
+    db.collection('user').add({
       itemName: this.state.itemName,
       purchaseFrequency: this.state.purchaseFrequency,
       lastPurchasedDate: this.state.lastPurchasedDate,
