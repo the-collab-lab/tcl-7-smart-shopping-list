@@ -42,12 +42,15 @@ class AddItem extends React.Component {
     return (
       <div className="add-item-form">
         <form onSubmit={this.addItem}>
-          <input
-            type="text"
-            name="itemName"
-            onChange={this.updateInput}
-            value={this.state.itemName}
-          />
+          <label id="item-text">
+            Name of Item
+            <input
+              type="text"
+              name="itemName"
+              onChange={this.updateInput}
+              value={this.state.itemName}
+            />
+          </label>
           <br></br>
           <label>How soon do you expect to buy this again?</label>
           <br></br>
