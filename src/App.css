@@ -71,3 +71,23 @@ footer nav img {
   max-height: 20px;
   max-width: 20px;
 }
+
+/* Form Styling */
+.form-button input[type='radio'] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+/* placeholder css to test button style */
+.form-button label {
+  display: inline-block;
+  background-color: #ddd;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.form-button label:hover {
+  background-color: #878787;
+}
