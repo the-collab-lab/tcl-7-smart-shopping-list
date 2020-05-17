@@ -55,10 +55,6 @@ class Landing extends React.Component {
 
 function SignIn() {
   // uses setLocalToken to set token to local storage when button is clicked
-  // eslint-disable-next-line
-  function handleCreateShoppingListClick() {
-    setLocalToken();
-  }
   return (
     <form className="shadow bg-white pa2" action="./add-item">
       <h1 className="b f1">Welcome to your smart shopping list!</h1>
