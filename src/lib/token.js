@@ -13,8 +13,8 @@ export function hasLocalToken() {
 }
 
 // Sets token in local storage
-export function setLocalToken() {
-  const token = getToken();
+export function setLocalToken(token) {
+  token = token || getToken();
   const myStorage = window.localStorage;
   myStorage.setItem('token', token);
 }
