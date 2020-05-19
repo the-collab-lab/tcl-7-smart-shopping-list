@@ -18,3 +18,7 @@ export function setLocalToken(token) {
   const myStorage = window.localStorage;
   myStorage.setItem('token', token);
 }
+
+
+
+    

@@ -3,6 +3,7 @@ import './App.css';
 import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
+import ShareList from './Components/shareList.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/add-item">
               <ItemForm />
+            </Route>
+            <Route path="/join-existing">
+              <ShareList />
             </Route>
             <Route path="/">
               <Landing />
