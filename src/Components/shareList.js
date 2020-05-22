@@ -40,19 +40,25 @@ class ShareList extends React.Component {
     return (
       <form className="shadow bg-white pa2" action="./add-item">
         <h1 className="b f1">Welcome to your smart shopping list!</h1>
-        <p className="f3">
+        <p className="f3 pv2">
           Enter your share code below. Then tap "Join shopping list" to get
           started.
         </p>
-        <label>
-          Share Code
+        <div className="input-field-hover pv2">
           <input
+            id="share-code"
             type="text"
             name="shareCode"
+            className="bb bw1 b--gray"
+            autocapitalize="none"
             onChange={this.updateInput}
             value={this.state.shareCode}
+            required
           />
-        </label>
+          <label for="share-code" className="tc gray f1 b hover">
+            Share Code
+          </label>
+        </div>
         <p>
           <button
             onClick={this.handleCheckShareCode}
@@ -64,7 +70,6 @@ class ShareList extends React.Component {
         <p className="f5 gray">
           You can also{' '}
           <a className="black" href="/">
-            {' '}
             create a new shopping list
           </a>
           .
