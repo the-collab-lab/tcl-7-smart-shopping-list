@@ -75,7 +75,7 @@ class SignIn extends React.Component {
         </button>
         <p className="f5 gray">
           You can also{' '}
-          <a className="black" href="/">
+          <a className="black" href="/join-existing">
             join an existing shopping list
           </a>
           .
