@@ -132,7 +132,6 @@ footer nav img {
 
 .input-field-hover {
   position: relative;
-  margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
   width: 250px;
@@ -143,12 +142,12 @@ footer nav img {
 input:focus ~ label.hover,
 input:valid ~ label.hover {
   font-size: 0.875rem;
-  top: -24px;
+  top: 0px;
 }
 
 label.hover {
   position: absolute;
-  top: 0;
+  top: 24px;
   left: 0;
   width: 100%;
   transition: 0.2s all;

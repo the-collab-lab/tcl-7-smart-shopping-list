@@ -49,7 +49,7 @@ class ShareList extends React.Component {
             id="share-code"
             type="text"
             name="shareCode"
-            className="bb bw1 b--gray"
+            className="tc bb bw1 b--gray pa1 f3"
             autocapitalize="none"
             onChange={this.updateInput}
             value={this.state.shareCode}
