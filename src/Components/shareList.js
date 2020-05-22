@@ -50,12 +50,12 @@ class ShareList extends React.Component {
             type="text"
             name="shareCode"
             className="tc bb bw1 b--gray pa1 f3"
-            autocapitalize="none"
+            autoCapitalize="none"
             onChange={this.updateInput}
             value={this.state.shareCode}
             required
           />
-          <label for="share-code" className="tc gray f1 b hover">
+          <label htmlFor="share-code" className="tc gray f1 b hover">
             Share Code
           </label>
         </div>
