@@ -10,6 +10,7 @@ class AddItem extends React.Component {
       itemName: '',
       purchaseFrequency: null,
       lastPurchasedDate: null,
+      errorMsg: '',
     };
   }
   updateInput = e => {
@@ -27,17 +28,44 @@ class AddItem extends React.Component {
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.collection(getLocalToken()).add({
-      itemName: this.state.itemName,
-      purchaseFrequency: this.state.purchaseFrequency,
-      lastPurchasedDate: this.state.lastPurchasedDate,
-    });
+    const collection = db.collection(getLocalToken());
 
-    this.setState({
-      itemName: '',
-      purchaseFrequency: null,
-      lastPurchasedDate: null,
-    });
+    var query = collection.where('itemName', '==', this.state.itemName);
+
+    query
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.size) {
+          console.log('this name is already in db:', this.state.itemName);
+          // this name is already in db
+        } else {
+          // the item is not in db - we can add it
+          console.log(
+            'the item is not in db - we can add it:',
+            this.state.itemName,
+          );
+
+          collection
+            .add({
+              itemName: this.state.itemName,
+              purchaseFrequency: this.state.purchaseFrequency,
+              lastPurchasedDate: this.state.lastPurchasedDate,
+            })
+            .then(() => {})
+            .catch(err => {
+              console.log('Could not add item:', err);
+            });
+
+          this.setState({
+            itemName: '',
+            purchaseFrequency: null,
+            lastPurchasedDate: null,
+          });
+        }
+      })
+      .catch(error => {
+        console.log('Error getting documents: ', error);
+      });
   };
   render() {
     return (
@@ -86,6 +114,8 @@ class AddItem extends React.Component {
             <br></br>
             <button type="submit">Add It</button>
           </div>
+
+          {this.state.errorMsg ? <div>Error: {this.state.errorMsg}</div> : null}
         </form>
       </div>
     );
