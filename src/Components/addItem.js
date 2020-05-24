@@ -40,9 +40,7 @@ class AddItem extends React.Component {
         if (querySnapshot.size) {
           console.log('this name is already in db:', this.state.itemName);
           this.setState({ errorMsg: 'Item is already in list.' });
-          // this name is already in db
         } else {
-          // the item is not in db - we can add it
           console.log(
             'the item is not in db - we can add it:',
             this.state.itemName,
