@@ -64,13 +64,14 @@ class SignIn extends React.Component {
   };
   render() {
     return (
-      <form className="shadow bg-white pa2" action="./add-item">
+      <form
+        className="shadow bg-white pa2"
+        action="./add-item"
+        onSubmit={this.handleClickSetLocalToken}
+      >
         <h1 className="b f1">Welcome to your smart shopping list!</h1>
         <p className="f3">Tap “Create shopping list” to get started.</p>
-        <button
-          onClick={this.handleClickSetLocalToken}
-          className="bg-green ph2 pv1 white f2 b"
-        >
+        <button className="bg-green ph2 pv1 white f2 b">
           Create shopping list
         </button>
         <p className="f5 gray">
