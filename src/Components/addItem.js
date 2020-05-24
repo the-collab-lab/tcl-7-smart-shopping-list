@@ -1,7 +1,9 @@
 import React from 'react';
 import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
+import { Alert } from 'react-bootstrap';
 
 class AddItem extends React.Component {
   constructor() {
@@ -10,7 +12,8 @@ class AddItem extends React.Component {
       itemName: '',
       purchaseFrequency: null,
       lastPurchasedDate: null,
-      errorMsg: [],
+      errorMsg: null,
+      show: true,
     };
   }
 
@@ -23,6 +26,12 @@ class AddItem extends React.Component {
   updateFrequency = e => {
     this.setState({
       purchaseFrequency: e.target.value,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      show: !this.state.show,
     });
   };
 
@@ -116,7 +125,14 @@ class AddItem extends React.Component {
             <button type="submit">Add It</button>
           </div>
 
-          {this.state.errorMsg ? <h3>{this.state.errorMsg}</h3> : null}
+          {this.state.errorMsg ? (
+            <div>
+              {' '}
+              <Alert dismissible variant="danger">
+                {this.state.errorMsg}
+              </Alert>{' '}
+            </div>
+          ) : null}
         </form>
       </div>
     );
