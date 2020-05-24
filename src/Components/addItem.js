@@ -124,7 +124,7 @@ class AddItem extends React.Component {
             <br></br>
             <button type="submit">Add It</button>
           </div>
-
+          <br />
           {this.state.errorMsg ? (
             <div>
               {' '}
