@@ -10,9 +10,10 @@ class AddItem extends React.Component {
       itemName: '',
       purchaseFrequency: null,
       lastPurchasedDate: null,
-      errorMsg: '',
+      errorMsg: [],
     };
   }
+
   updateInput = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -24,6 +25,7 @@ class AddItem extends React.Component {
       purchaseFrequency: e.target.value,
     });
   };
+
   /* user is placeholder for user token when functionality is completed */
   addItem = e => {
     e.preventDefault();
@@ -37,6 +39,7 @@ class AddItem extends React.Component {
       .then(querySnapshot => {
         if (querySnapshot.size) {
           console.log('this name is already in db:', this.state.itemName);
+          this.setState({ errorMsg: 'Item is already in list.' });
           // this name is already in db
         } else {
           // the item is not in db - we can add it
@@ -115,7 +118,7 @@ class AddItem extends React.Component {
             <button type="submit">Add It</button>
           </div>
 
-          {this.state.errorMsg ? <div>Error: {this.state.errorMsg}</div> : null}
+          {this.state.errorMsg ? <h3>{this.state.errorMsg}</h3> : null}
         </form>
       </div>
     );
