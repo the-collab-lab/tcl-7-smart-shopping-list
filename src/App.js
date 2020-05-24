@@ -11,7 +11,6 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-//import { render } from 'react-dom';
 
 function App() {
   return (
