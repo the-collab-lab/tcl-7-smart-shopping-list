@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { fb } from '../lib/firebase';
 import { setLocalToken } from '../lib/token.js';
+import { useHistory } from 'react-router-dom';
 
-function getExistingList(token) {
+function hasList(token, callback) {
   const db = fb.firestore();
   const promise = db.collection(token).get();
 
   promise.then(querySnapshot => {
     if (!querySnapshot.empty) {
-      setLocalToken(token);
-      window.location.href = '/list-view';
+      callback(token);
     } else {
       window.alert('Enter a valid share code and try again');
     }
@@ -19,9 +19,16 @@ function getExistingList(token) {
 export function ShareList() {
   const [token, setToken] = useState('');
 
+  let history = useHistory();
   const handleSubmitShareCode = e => {
     e.preventDefault();
-    getExistingList(token);
+
+    const setList = token => {
+      setLocalToken(token);
+      history.push('/list-view');
+    };
+
+    hasList(token, setList);
   };
 
   return (
