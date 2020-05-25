@@ -1,82 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fb } from '../lib/firebase';
 import { setLocalToken } from '../lib/token.js';
 
-class ShareList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { token: '' };
+function getExistingList(token) {
+  const db = fb.firestore();
+  const promise = db.collection(token).get();
 
-    this.updateInput = this.updateInput.bind(this);
-  }
+  promise.then(querySnapshot => {
+    if (!querySnapshot.empty) {
+      setLocalToken(token);
+      window.location.href = '/list-view';
+    } else {
+      window.alert('Enter a valid share code and try again');
+    }
+  });
+}
 
-  updateInput(event) {
-    this.setState({ token: event.target.value });
-  }
+export function ShareList() {
+  const [token, setToken] = useState('');
 
-  getExistingList() {
-    const db = fb.firestore();
-    const promise = db.collection(this.state.token).get();
-
-    promise.then(querySnapshot => {
-      //check if value has list
-      if (!querySnapshot.empty) {
-        //if yes, set local token and route to list view
-        setLocalToken(this.state.token);
-        window.location.href = '/list-view';
-      } else {
-        //if no, show alert
-        window.alert('Enter a valid share code and try again');
-      }
-    });
-  }
-
-  handleCheckShareCode = e => {
+  const handleSubmitShareCode = e => {
     e.preventDefault();
-    this.getExistingList();
+    getExistingList(token);
   };
 
-  render() {
-    return (
-      <form className="shadow bg-white pa2" action="./add-item">
-        <h1 className="b f1">Welcome to your smart shopping list!</h1>
-        <p className="f3 pv2">
-          Enter your share code below. Then tap "Join shopping list" to get
-          started.
-        </p>
-        <div className="input-field-hover pv2">
-          <input
-            id="share-code"
-            type="text"
-            name="shareCode"
-            className="tc bb bw1 b--gray pa1 f3"
-            autoCapitalize="none"
-            onChange={this.updateInput}
-            value={this.state.shareCode}
-            required
-          />
-          <label htmlFor="share-code" className="tc gray f1 b hover">
-            Share Code
-          </label>
-        </div>
-        <p>
-          <button
-            onClick={this.handleCheckShareCode}
-            className="bg-green ph2 pv1 white f2 b"
-          >
-            Join Shopping List
-          </button>
-        </p>
-        <p className="f5 gray">
-          You can also{' '}
-          <a className="black" href="/">
-            create a new shopping list
-          </a>
-          .
-        </p>
-      </form>
-    );
-  }
+  return (
+    <form className="shadow bg-white pa2" onSubmit={handleSubmitShareCode}>
+      <h1 className="b f1">Welcome to your smart shopping list!</h1>
+      <p className="f3 pv2">
+        Enter your share code below. Then tap "Join shopping list" to get
+        started.
+      </p>
+      <div className="input-field-hover pv2">
+        <input
+          id="share-code"
+          type="text"
+          name="shareCode"
+          className="tc bb bw1 b--gray pa1 f3"
+          autoCapitalize="none"
+          onChange={event => setToken(event.target.value)}
+          value={token}
+          required
+        />
+        <label htmlFor="share-code" className="tc gray f1 b hover">
+          Share Code
+        </label>
+      </div>
+      <p>
+        <button className="bg-green ph2 pv1 white f2 b">
+          Join Shopping List
+        </button>
+      </p>
+      <p className="f5 gray">
+        You can also{' '}
+        <a className="black" href="/">
+          create a new shopping list
+        </a>
+        .
+      </p>
+    </form>
+  );
 }
 
 export default ShareList;
