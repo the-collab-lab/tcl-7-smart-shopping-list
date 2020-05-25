@@ -10,6 +10,7 @@ import {
   Switch,
   Route,
   NavLink,
+  Link,
 } from 'react-router-dom';
 
 function App() {
@@ -74,9 +75,9 @@ function SignIn() {
       </button>
       <p className="f5 gray">
         You can also{' '}
-        <a className="black" href="/join-existing">
+        <Link className="black" to="/join-existing">
           join an existing shopping list
-        </a>
+        </Link>
         .
       </p>
     </form>
