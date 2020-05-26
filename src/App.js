@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
