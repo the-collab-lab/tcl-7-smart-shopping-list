@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
+import { Alert } from 'react-bootstrap';
 
 class AddItem extends React.Component {
   constructor() {
@@ -10,8 +11,11 @@ class AddItem extends React.Component {
       itemName: '',
       purchaseFrequency: null,
       lastPurchasedDate: null,
+      errorMsg: null,
+      show: true,
     };
   }
+
   updateInput = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -23,21 +27,54 @@ class AddItem extends React.Component {
       purchaseFrequency: e.target.value,
     });
   };
+
+  onClose = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
+
   /* user is placeholder for user token when functionality is completed */
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
-    db.collection(getLocalToken()).add({
-      itemName: this.state.itemName,
-      purchaseFrequency: this.state.purchaseFrequency,
-      lastPurchasedDate: this.state.lastPurchasedDate,
-    });
+    const collection = db.collection(getLocalToken());
 
-    this.setState({
-      itemName: '',
-      purchaseFrequency: null,
-      lastPurchasedDate: null,
-    });
+    var query = collection.where('itemName', '==', this.state.itemName);
+
+    query
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.size) {
+          // console.log('this name is already in db:', this.state.itemName);
+          this.setState({ errorMsg: 'Item is already in list.' });
+        } else {
+          // console.log(
+          //   'the item is not in db - we can add it:',
+          //   this.state.itemName,
+          // );
+
+          collection
+            .add({
+              itemName: this.state.itemName,
+              purchaseFrequency: this.state.purchaseFrequency,
+              lastPurchasedDate: this.state.lastPurchasedDate,
+            })
+            .then(() => {})
+            .catch(err => {
+              console.log('Could not add item:', err);
+            });
+
+          this.setState({
+            itemName: '',
+            purchaseFrequency: null,
+            lastPurchasedDate: null,
+          });
+        }
+      })
+      .catch(error => {
+        console.log('Error getting documents: ', error);
+      });
   };
   render() {
     return (
@@ -86,6 +123,15 @@ class AddItem extends React.Component {
             <br></br>
             <button type="submit">Add It</button>
           </div>
+          <br />
+          {this.state.errorMsg ? (
+            <div>
+              {' '}
+              <Alert dismissible variant="danger">
+                {this.state.errorMsg}
+              </Alert>{' '}
+            </div>
+          ) : null}
         </form>
       </div>
     );
