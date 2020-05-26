@@ -78,17 +78,22 @@ class AddItem extends React.Component {
   };
   render() {
     return (
-      <div className="add-item-form">
+      <div className="add-item-form bg-white shadow pa2">
         <form onSubmit={this.addItem}>
-          <label id="item-text">
-            Name of Item
+          <div className="input-field-hover pv2">
             <input
+              id="itemName"
               type="text"
               name="itemName"
               onChange={this.updateInput}
               value={this.state.itemName}
+              className="tc bb bw1 b--gray pa1 f3"
+              autoCapitalize="none"
             />
-          </label>
+            <label htmlFor="itemName" className="tc gray f1 b hover">
+              Name of Item
+            </label>
+          </div>
           <br></br>
           <label>How soon do you expect to buy this again?</label>
           <br></br>
@@ -121,7 +126,12 @@ class AddItem extends React.Component {
               Not soon
             </label>
             <br></br>
-            <button type="submit">Add It</button>
+            <button
+              type="submit"
+              className="bg-green ph2 pv1 white f2 b shadow"
+            >
+              Add It
+            </button>
           </div>
           <br />
           {this.state.errorMsg ? (
