@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
 import { Alert } from 'react-bootstrap';
@@ -47,13 +46,13 @@ class AddItem extends React.Component {
       .get()
       .then(querySnapshot => {
         if (querySnapshot.size) {
-          console.log('this name is already in db:', this.state.itemName);
+          // console.log('this name is already in db:', this.state.itemName);
           this.setState({ errorMsg: 'Item is already in list.' });
         } else {
-          console.log(
-            'the item is not in db - we can add it:',
-            this.state.itemName,
-          );
+          // console.log(
+          //   'the item is not in db - we can add it:',
+          //   this.state.itemName,
+          // );
 
           collection
             .add({
