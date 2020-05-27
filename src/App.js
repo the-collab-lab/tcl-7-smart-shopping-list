@@ -64,7 +64,7 @@ function SignIn() {
   let history = useHistory();
   const handleSubmit = () => {
     setLocalToken();
-    history.push('/add-item');
+    history.push('/list-view');
   };
 
   return (
