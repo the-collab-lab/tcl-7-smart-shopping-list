@@ -393,3 +393,7 @@ label.hover {
 .form-button label:hover {
   background-color: #878787;
 }
+
+.grocery-list li {
+  text-align: left;
+}
