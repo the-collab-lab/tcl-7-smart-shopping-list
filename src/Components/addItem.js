@@ -12,7 +12,7 @@ class AddItem extends React.Component {
       purchaseFrequency: null,
       lastPurchasedDate: null,
       errorMsg: null,
-      show: true,
+      // show: true,
     };
   }
 
@@ -28,11 +28,12 @@ class AddItem extends React.Component {
     });
   };
 
-  onClose = () => {
-    this.setState({
-      show: !this.state.show,
-    });
-  };
+  // toggleAlert = () => {
+  //   this.setState(state => ({
+  //     show: !state.show,
+  //   }));
+  // };
+  clearError = () => this.setState({ errorMsg: null });
 
   /* user is placeholder for user token when functionality is completed */
   addItem = e => {
@@ -127,7 +128,7 @@ class AddItem extends React.Component {
           {this.state.errorMsg ? (
             <div>
               {' '}
-              <Alert dismissible variant="danger">
+              <Alert dismissible onClose={this.clearError} variant="danger">
                 {this.state.errorMsg}
               </Alert>{' '}
             </div>
