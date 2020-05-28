@@ -3,6 +3,19 @@ import { FirestoreCollection } from 'react-firestore';
 import { getLocalToken } from '../lib/token.js';
 
 class GetList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isChecked: true,
+    };
+  }
+
+  toggleCheck = () => {
+    this.setState({
+      isChecked: false,
+    });
+  };
+
   render() {
     return (
       <FirestoreCollection
@@ -18,13 +31,13 @@ class GetList extends React.Component {
                   <li key={item.id}>
                     <input
                       type="checkbox"
-                      checked={
+                      isChecked={this.toggleCheck}
+                      defaultChecked={
                         item.lastPurchasedDate
                           ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
                             86400
                           : false
                       }
-                      handlecheckboxchange={this.handleCheckBoxChange}
                     />
                     {item.itemName}
                   </li>
