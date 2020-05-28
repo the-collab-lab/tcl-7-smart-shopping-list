@@ -26,7 +26,7 @@ class GetList extends React.Component {
           ) : (
             <div>
               <h1>Groceries</h1>
-              <ul>
+              <ul className="grocery-list">
                 {data.map(item => (
                   <li key={item.id}>
                     <input
