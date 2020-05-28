@@ -59,7 +59,7 @@ class AddItem extends React.Component {
             .add({
               itemName: this.state.itemName,
               purchaseFrequency: this.state.purchaseFrequency,
-              lastPurchasedDate: this.state.lastPurchasedDate,
+              lastPurchasedDate: new Date(),
             })
             .then(() => {})
             .catch(err => {

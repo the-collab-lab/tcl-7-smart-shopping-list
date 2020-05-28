@@ -15,9 +15,18 @@ class GetList extends React.Component {
               <h1>Groceries</h1>
               <ul>
                 {data.map(item => (
-                  <li key={item.id}> 
-                  <input type="checkbox" ischecked={item.checked} handlecheckboxchange={this.handleCheckBoxChange} /> 
-                  {item.itemName}
+                  <li key={item.id}>
+                    <input
+                      type="checkbox"
+                      checked={
+                        item.lastPurchasedDate
+                          ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
+                            86400
+                          : false
+                      }
+                      handlecheckboxchange={this.handleCheckBoxChange}
+                    />
+                    {item.itemName}
                   </li>
                 ))}
               </ul>
