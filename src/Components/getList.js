@@ -32,7 +32,7 @@ class GetList extends React.Component {
                     <label>
                     <input 
                       type="checkbox"
-                      isChecked={this.toggleCheck}
+                      ischecked={this.state.toggleCheck}
                       defaultChecked={
                         item.lastPurchasedDate
                           ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
