@@ -12,7 +12,7 @@ function EmptyList() {
 
   return (
     <div className="bg-white shadow pa2">
-      <h2>Welcome to your Shopping list</h2>
+      <h1 className="b f1">Welcome to your shopping list!</h1>
       <p>
         To get started add an item to your shopping list by clicking "add item
         below"
