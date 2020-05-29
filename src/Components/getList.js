@@ -24,12 +24,13 @@ class GetList extends React.Component {
           return isLoading ? (
             <div>loading...</div>
           ) : (
-            <div>
+            <div className="grocery-list">
               <h1>Groceries</h1>
-              <ul className="grocery-list">
+              <ul className="tl f2">
                 {data.map(item => (
-                  <li key={item.id}>
-                    <input
+                  <li className="bg-white pa1 shadow" key={item.id}>
+                    <label>
+                    <input 
                       type="checkbox"
                       isChecked={this.toggleCheck}
                       defaultChecked={
@@ -40,6 +41,7 @@ class GetList extends React.Component {
                       }
                     />
                     {item.itemName}
+                    </label>
                   </li>
                 ))}
               </ul>
