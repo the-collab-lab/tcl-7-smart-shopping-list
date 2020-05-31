@@ -411,5 +411,5 @@ label.hover {
     vertical-align: center;
     position: relative;
     top: -2px;
-    *overflow: hidden;
+    overflow: hidden;
 }

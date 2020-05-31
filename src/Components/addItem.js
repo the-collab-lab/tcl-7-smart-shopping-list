@@ -12,7 +12,6 @@ class AddItem extends React.Component {
       purchaseFrequency: null,
       lastPurchasedDate: null,
       errorMsg: null,
-      // show: true,
     };
   }
 
@@ -28,14 +27,10 @@ class AddItem extends React.Component {
     });
   };
 
-  // toggleAlert = () => {
-  //   this.setState(state => ({
-  //     show: !state.show,
-  //   }));
-  // };
+  
   clearError = () => this.setState({ errorMsg: null });
 
-  /* user is placeholder for user token when functionality is completed */
+ 
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
@@ -50,10 +45,6 @@ class AddItem extends React.Component {
           // console.log('this name is already in db:', this.state.itemName);
           this.setState({ errorMsg: 'Item is already in list.' });
         } else {
-          // console.log(
-          //   'the item is not in db - we can add it:',
-          //   this.state.itemName,
-          // );
 
           collection
             .add({
