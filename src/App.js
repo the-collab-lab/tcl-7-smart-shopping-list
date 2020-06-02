@@ -64,7 +64,7 @@ function SignIn() {
   let history = useHistory();
   const handleSubmit = () => {
     setLocalToken();
-    history.push('/add-item');
+    history.push('/list-view');
   };
 
   return (
@@ -90,12 +90,7 @@ function Listview() {
 }
 
 function ItemForm() {
-  return (
-    <div>
-      <h2>This is where you'd add an item!</h2>
-      <AddItem />
-    </div>
-  );
+  return <AddItem />;
 }
 
 export default App;
