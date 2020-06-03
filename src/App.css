@@ -436,3 +436,23 @@ label.hover {
   background-color: #ed3f32;
   border: 2px solid rgba(0, 0, 0, 0.33);
 }
+
+
+/* List Styling */
+.grocery-list label {
+  padding-right: 12px;
+}
+
+.grocery-list li {
+  border-radius: 4px;
+  margin: 12px;
+}
+
+.grocery-list input {
+    width: 18px;
+    height: 18px;
+    vertical-align: center;
+    position: relative;
+    top: -2px;
+    overflow: hidden;
+}

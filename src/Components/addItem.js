@@ -12,7 +12,6 @@ class AddItem extends React.Component {
       purchaseFrequency: null,
       lastPurchasedDate: null,
       errorMsg: null,
-      show: true,
     };
   }
 
@@ -28,13 +27,10 @@ class AddItem extends React.Component {
     });
   };
 
-  onClose = () => {
-    this.setState({
-      show: !this.state.show,
-    });
-  };
+  
+  clearError = () => this.setState({ errorMsg: null });
 
-  /* user is placeholder for user token when functionality is completed */
+ 
   addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
@@ -49,16 +45,12 @@ class AddItem extends React.Component {
           // console.log('this name is already in db:', this.state.itemName);
           this.setState({ errorMsg: 'Item is already in list.' });
         } else {
-          // console.log(
-          //   'the item is not in db - we can add it:',
-          //   this.state.itemName,
-          // );
 
           collection
             .add({
               itemName: this.state.itemName,
               purchaseFrequency: this.state.purchaseFrequency,
-              lastPurchasedDate: this.state.lastPurchasedDate,
+              lastPurchasedDate: new Date(),
             })
             .then(() => {})
             .catch(err => {
@@ -131,15 +123,15 @@ class AddItem extends React.Component {
           Add It
         </button>
         <br />
-        {this.state.errorMsg ? (
-          <div>
-            {' '}
-            <Alert dismissible variant="danger">
-              {this.state.errorMsg}
-            </Alert>{' '}
-          </div>
-        ) : null}
-      </form>
+          {this.state.errorMsg ? (
+            <div>
+              {' '}
+              <Alert dismissible onClose={this.clearError} variant="danger">
+                {this.state.errorMsg}
+              </Alert>{' '}
+            </div>
+          ) : null}
+        </form>
     );
   }
 }
