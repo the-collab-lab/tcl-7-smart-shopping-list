@@ -3,6 +3,7 @@ import '../App.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
 import { Alert } from 'react-bootstrap';
+import calculateEstimate from '../lib/estimates.js';
 
 function AddItem() {
   const [itemName, setItemName] = useState('');
@@ -27,12 +28,20 @@ function AddItem() {
         if (querySnapshot.size) {
           setErrorMsg('Item is already in list.');
         } else {
+          const date = new Date();
+          const noPurchases = 0;
+
           collection
             .add({
               itemName: itemName,
               purchaseFrequency: purchaseFrequency,
-              lastPurchasedDate: new Date(),
-              nextPurchaseDate: null,
+              lastPurchasedDate: date,
+              nextPurchaseDate: calculateEstimate(
+                null,
+                parseInt(purchaseFrequency, 10),
+                noPurchases,
+              ),
+              numberOfPurchases: noPurchases,
             })
             .then(() => {})
             .catch(err => {
