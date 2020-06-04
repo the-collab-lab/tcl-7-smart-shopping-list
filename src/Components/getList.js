@@ -27,6 +27,9 @@ function EmptyList() {
 
 function FullList(props) {
   const [isChecked, setIsChecked] = useState(false);
+  const handleCheck = () => {
+    setIsChecked(checked => !checked);
+  };
 
   return (
     <div className="grocery-list">
@@ -38,7 +41,7 @@ function FullList(props) {
               <input
                 type="checkbox"
                 value={isChecked}
-                onChange={() => setIsChecked(checked => !checked)}
+                onChange={handleCheck}
                 defaultChecked={
                   item.lastPurchasedDate
                     ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
