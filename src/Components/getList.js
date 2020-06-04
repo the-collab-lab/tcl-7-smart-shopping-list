@@ -27,10 +27,11 @@ function EmptyList() {
   );
 }
 
+
+
+
 function FullList(props) {
   const [isChecked, setCheck] = useState(false);
-
-
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>

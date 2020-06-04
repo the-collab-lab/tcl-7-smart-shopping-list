@@ -5,6 +5,7 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
+//import FilterList from './Components/listFilter.js'
 import {
   BrowserRouter as Router,
   useHistory,
@@ -86,6 +87,7 @@ function SignIn() {
 }
 
 function Listview() {
+  //return <FilterList />
   return <GetList />;
 }
 
