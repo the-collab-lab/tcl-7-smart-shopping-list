@@ -40,6 +40,11 @@ const FullList = (props)=> {
     setSearchTerm("");
   };
 
+  const searchList = props.data.filter(item => {
+    return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+
 
   return (
     <div className="grocery-list">
@@ -58,10 +63,28 @@ const FullList = (props)=> {
        </li>
 
     
-        {props.data
-        .filter(item =>
-          item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        {searchTerm
+          ? searchList.map(item => (
+            <li className="bg-white pa1 shadow" key={item.id}>
+               <div className="checkbox-input">
+            <label>
+                    <input 
+                      type="checkbox"
+                        value= {isChecked}
+                        onChange={() => setCheck(checked => !checked)}
+                      defaultChecked={
+                        item.lastPurchasedDate
+                          ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
+                            86400
+                          : false
+                      }
+                    />
+              {item.itemName}
+              </label>
+            </div>
+            </li>
+          ))
+        : props.data
         .map(item => (
           <li className="bg-white pa1 shadow" key={item.id}>
             <div className="checkbox-input">
