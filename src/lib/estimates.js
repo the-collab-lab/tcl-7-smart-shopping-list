@@ -5,18 +5,22 @@
  * @param {Number} latestInterval The interval between the most recent and previous purchases
  * @param {Number} numberOfPurchases Total number of purchases for the item
  */
+
 const calculateEstimate = (lastEstimate, latestInterval, numberOfPurchases) => {
-    if (numberOfPurchases >= 2) {
-        if (isNaN(lastEstimate)) {
-            lastEstimate = 14;
-        }
-        let previousFactor = lastEstimate * numberOfPurchases;
-        let latestFactor = latestInterval * (numberOfPurchases - 1);
-        let totalDivisor = numberOfPurchases * 2 - 1;
-        return Math.round((previousFactor + latestFactor) / totalDivisor);
-    } else {
-        return latestInterval;
-    }
+  if (isNaN(lastEstimate)) {
+    lastEstimate = 14;
+  }
+
+  if (numberOfPurchases >= 2) {
+    let previousFactor = lastEstimate * numberOfPurchases;
+    let latestFactor = latestInterval * (numberOfPurchases - 1);
+    let totalDivisor = numberOfPurchases * 2 - 1;
+    return Math.round((previousFactor + latestFactor) / totalDivisor);
+  } else if (numberOfPurchases === 1) {
+    return Math.round((lastEstimate + latestInterval) / 2);
+  } else {
+    return lastEstimate;
+  }
 };
 
 export default calculateEstimate;
