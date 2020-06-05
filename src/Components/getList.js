@@ -29,6 +29,8 @@ function FullList(props) {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheck = () => {
     setIsChecked(checked => !checked);
+    // update nextPurchaseDate
+    // if checked then recalc frequency (calculateEstimate) and nextPurchaseDate (dateObj.setDate(dateObj.getDate()))
   };
 
   return (
