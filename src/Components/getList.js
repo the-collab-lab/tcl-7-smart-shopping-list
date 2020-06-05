@@ -28,16 +28,43 @@ function EmptyList() {
 }
 
 
-
-
-function FullList(props) {
+const FullList = (props)=> {
   const [isChecked, setCheck] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
+
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>
-      <ul className="tl f2">
-        {props.data.map(item => (
+      <ul className="tl f2 check-list">
+      <li className="bg-white pa1 shadow">
+      <div className="filter-input">
+      <input 
+         type="text"
+         placeholder="Filter List"
+         value={searchTerm}
+         onChange={handleChange}
+       />
+       <button className="filter-button" onClick={clearSearch}> X </button>
+       </div>
+       </li>
+
+    
+        {props.data
+        .filter(item =>
+          item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        .map(item => (
           <li className="bg-white pa1 shadow" key={item.id}>
+            <div className="checkbox-input">
             <label>
                     <input 
                       type="checkbox"
@@ -51,7 +78,8 @@ function FullList(props) {
                       }
                     />
                     {item.itemName}
-                    </label>
+            </label>
+            </div>
           </li>
         ))}
       </ul>
