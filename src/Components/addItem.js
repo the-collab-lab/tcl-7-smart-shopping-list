@@ -29,19 +29,16 @@ function AddItem() {
           setErrorMsg('Item is already in list.');
         } else {
           const date = new Date();
-          const noPurchases = 0;
+          const nextPurchaseDate = new Date(date);
+          nextPurchaseDate.setDate(nextDate.getDate() + purchaseFrequency);
 
           collection
             .add({
               itemName: itemName,
               purchaseFrequency: purchaseFrequency,
               lastPurchasedDate: date,
-              nextPurchaseDate: calculateEstimate(
-                null,
-                parseInt(purchaseFrequency, 10),
-                noPurchases,
-              ),
-              numberOfPurchases: noPurchases,
+              nextPurchaseDate: nextPurchaseDate,
+              numberOfPurchases: 0,
             })
             .then(() => {})
             .catch(err => {
