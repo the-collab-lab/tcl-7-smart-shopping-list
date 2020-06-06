@@ -3,7 +3,7 @@ import '../App.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
 import { Alert } from 'react-bootstrap';
-import calculateEstimate from '../lib/estimates.js';
+// import calculateEstimate from '../lib/estimates.js';
 
 function AddItem() {
   const [itemName, setItemName] = useState('');
@@ -19,7 +19,6 @@ function AddItem() {
     e.preventDefault();
     const db = fb.firestore();
     const collection = db.collection(getLocalToken());
-
     var query = collection.where('itemName', '==', itemName);
 
     query
@@ -30,7 +29,9 @@ function AddItem() {
         } else {
           const date = new Date();
           const nextPurchaseDate = new Date(date);
-          nextPurchaseDate.setDate(nextDate.getDate() + purchaseFrequency);
+          nextPurchaseDate.setDate(
+            nextPurchaseDate.getDate() + parseInt(purchaseFrequency, 10),
+          );
 
           collection
             .add({
