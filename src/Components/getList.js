@@ -3,6 +3,8 @@ import { FirestoreCollection } from 'react-firestore';
 import { getLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import calculateEstimate from '../lib/estimates.js';
+import { fb } from '../lib/firebase';
 
 function EmptyList() {
   const history = useHistory();
@@ -25,34 +27,86 @@ function EmptyList() {
   );
 }
 
-function FullList(props) {
-  const [isChecked, setIsChecked] = useState(false);
-  const handleCheck = () => {
-    setIsChecked(checked => !checked);
-    // update nextPurchaseDate
-    // if checked then recalc frequency (calculateEstimate) and nextPurchaseDate (dateObj.setDate(dateObj.getDate()))
+function ItemRow(props) {
+  const today = new Date();
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  const oldItemData = {
+    purchaseFrequency: props.item.purchaseFrequency,
+    lastPurchasedDate: props.item.lastPurchasedDate,
+    nextPurchaseDate: props.item.nextPurchaseDate,
+    numberOfPurchases: props.item.numberOfPurchases,
   };
 
+  const newItemData = {
+    purchaseFrequency: calculateEstimate(
+      parseInt(props.item.purchaseFrequency, 10),
+      today.getDate() - parseInt(props.item.purchaseFrequency, 10),
+      props.item.numberOfPurchases,
+    ),
+    lastPurchasedDate: new Date(),
+    nextPurchaseDate: addDays(
+      today,
+      parseInt(props.item.purchaseFrequency, 10),
+    ),
+    numberOfPurchases: props.item.numberOfPurchases + 1,
+  };
+
+  const db = fb.firestore();
+  const dbItem = db.collection(getLocalToken()).doc(props.item.id);
+
+  const handleCheck = event => {
+    if (event.target.checked) {
+      dbItem
+        .update(newItemData)
+        .then(function() {
+          console.log('New data written!');
+        })
+        .catch(function(error) {
+          console.error('Error writing new data to document: ', error);
+        });
+    } else {
+      dbItem
+        .update(oldItemData)
+        .then(function() {
+          console.log('Old data written!');
+        })
+        .catch(function(error) {
+          console.error('Error writing old data to document: ', error);
+        });
+    }
+  };
+
+  return (
+    <li className="bg-white pa1 shadow">
+      <label>
+        <input
+          type="checkbox"
+          onChange={handleCheck}
+          defaultChecked={
+            props.item.lastPurchasedDate
+              ? Date.now() / 1000 - props.item.lastPurchasedDate.seconds < 86400
+              : false
+          }
+        />
+        {props.item.itemName}
+      </label>
+    </li>
+  );
+}
+
+function FullList(props) {
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>
       <ul className="tl f2">
         {props.data.map(item => (
-          <li className="bg-white pa1 shadow" key={item.id}>
-            <label>
-              <input
-                type="checkbox"
-                value={isChecked}
-                onChange={handleCheck}
-                defaultChecked={
-                  item.lastPurchasedDate
-                    ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
-                    : false
-                }
-              />
-              {item.itemName}
-            </label>
-          </li>
+          <ItemRow key={item.id} item={item} />
         ))}
       </ul>
     </div>
