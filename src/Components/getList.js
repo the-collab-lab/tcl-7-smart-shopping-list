@@ -26,7 +26,6 @@ function EmptyList() {
 }
 
 const FullList = (props) => {
-  const [isChecked, setCheck] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
@@ -61,50 +60,38 @@ const FullList = (props) => {
         </li>
 
         {searchTerm
-          ? searchList.map((item) => (
-              <li className="bg-white pa1 shadow" key={item.id}>
-                <div className="checkbox-input">
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={isChecked}
-                      onChange={() => setCheck((checked) => !checked)}
-                      defaultChecked={
-                        item.lastPurchasedDate
-                          ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
-                            86400
-                          : false
-                      }
-                    />
-                    {item.itemName}
-                  </label>
-                </div>
-              </li>
-            ))
-          : props.data.map((item) => (
-              <li className="bg-white pa1 shadow" key={item.id}>
-                <div className="checkbox-input">
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={isChecked}
-                      onChange={() => setCheck((checked) => !checked)}
-                      defaultChecked={
-                        item.lastPurchasedDate
-                          ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
-                            86400
-                          : false
-                      }
-                    />
-                    {item.itemName}
-                  </label>
-                </div>
-              </li>
-            ))}
+           ? searchList.map(item => <GroceryItem item={item} />)
+           : props.data.map(item => <GroceryItem item={item} />)
+        }
       </ul>
     </div>
   );
 };
+
+function GroceryItem(props) {
+  const [isChecked, setCheck] = useState(false);
+  const { item } = props;
+  return (
+    <li className="bg-white pa1 shadow" key={item.id}>
+      <div className="checkbox-input">
+        <label>
+          <input
+            type="checkbox"
+            value={isChecked}
+            onChange={() => setCheck(checked => !checked)}
+            defaultChecked={
+              item.lastPurchasedDate
+                ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
+                : false
+            }
+          />
+          {item.itemName}
+        </label>
+      </div>
+    </li>
+  );
+}
+
 
 function GetList() {
   return (
