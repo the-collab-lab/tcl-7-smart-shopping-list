@@ -4,8 +4,6 @@ import { getLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
-
-
 function EmptyList() {
   let history = useHistory();
 
@@ -27,36 +25,73 @@ function EmptyList() {
   );
 }
 
-function FullList(props) {
-  const [isChecked, setCheck] = useState(false);
+const FullList = (props) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+  };
+
+  const searchList = props.data.filter((item) => {
+    return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>
-      <ul className="tl f2">
-        {props.data.map(item => (
-          <li className="bg-white pa1 shadow" key={item.id}>
-            <label>
-                    <input 
-                      type="checkbox"
-                        value= {isChecked}
-                        onChange={() => setCheck(checked => !checked)}
-                      defaultChecked={
-                        item.lastPurchasedDate
-                          ? Date.now() / 1000 - item.lastPurchasedDate.seconds <
-                            86400
-                          : false
-                      }
-                    />
-                    {item.itemName}
-                    </label>
-          </li>
-        ))}
+      <ul className="tl f2 check-list">
+        <li className="bg-white pa1 shadow">
+          <div className="filter-input">
+            <input
+              type="text"
+              placeholder="Filter List"
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <button className="filter-button" onClick={clearSearch}>
+              {' '}
+              X{' '}
+            </button>
+          </div>
+        </li>
+
+        {searchTerm
+           ? searchList.map(item => <GroceryItem item={item} />)
+           : props.data.map(item => <GroceryItem item={item} />)
+        }
       </ul>
     </div>
   );
+};
+
+function GroceryItem(props) {
+  const [isChecked, setCheck] = useState(false);
+  const { item } = props;
+  return (
+    <li className="bg-white pa1 shadow" key={item.id}>
+      <div className="checkbox-input">
+        <label>
+          <input
+            type="checkbox"
+            value={isChecked}
+            onChange={() => setCheck(checked => !checked)}
+            defaultChecked={
+              item.lastPurchasedDate
+                ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
+                : false
+            }
+          />
+          {item.itemName}
+        </label>
+      </div>
+    </li>
+  );
 }
+
 
 function GetList() {
   return (

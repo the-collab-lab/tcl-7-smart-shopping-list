@@ -439,20 +439,29 @@ label.hover {
 
 
 /* List Styling */
-.grocery-list label {
-  padding-right: 12px;
-}
-
-.grocery-list li {
+.check-list li {
   border-radius: 4px;
   margin: 12px;
 }
 
-.grocery-list input {
-    width: 18px;
+.checkbox-input input {
+    width: 30px;
     height: 18px;
     vertical-align: center;
     position: relative;
     top: -2px;
     overflow: hidden;
+}
+
+.filter-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-button {
+  background-color: rgb(107, 83, 126);
+  border-radius: 4px;
+  padding: 4px 6px 4px 6px;
+  color: white;
 }
