@@ -5,6 +5,7 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
+
 import {
   BrowserRouter as Router,
   useHistory,
@@ -64,7 +65,7 @@ function SignIn() {
   let history = useHistory();
   const handleSubmit = () => {
     setLocalToken();
-    history.push('/add-item');
+    history.push('/list-view');
   };
 
   return (
@@ -90,12 +91,7 @@ function Listview() {
 }
 
 function ItemForm() {
-  return (
-    <div>
-      <h2>This is where you'd add an item!</h2>
-      <AddItem />
-    </div>
-  );
+  return <AddItem />;
 }
 
 export default App;
