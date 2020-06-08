@@ -28,57 +28,57 @@ function EmptyList() {
 }
 
 function ItemRow(props) {
-  const today = new Date();
+  const [isChecked, setIsChecked] = useState(
+    props.item.lastPurchasedDate
+      ? Date.now() / 1000 - props.item.lastPurchasedDate.seconds < 86400
+      : false,
+  );
 
-  function addDays(date, days) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
-  const oldItemData = {
-    purchaseFrequency: props.item.purchaseFrequency,
-    lastPurchasedDate: props.item.lastPurchasedDate,
-    nextPurchaseDate: props.item.nextPurchaseDate,
-    numberOfPurchases: props.item.numberOfPurchases,
-  };
-
-  const newItemData = {
-    purchaseFrequency: calculateEstimate(
-      parseInt(props.item.purchaseFrequency, 10),
-      today.getDate() - parseInt(props.item.purchaseFrequency, 10),
+  const generateUpdatedItemData = () => {
+    const today = new Date();
+    const prevPurchaseFrequency = parseInt(props.item.purchaseFrequency, 10);
+    const latestInterval = Math.floor(
+      (today.getTime() - props.item.lastPurchasedDate.toMillis()) /
+        (1000 * 3600 * 24),
+    );
+    const newPurchaseFrequency = calculateEstimate(
+      prevPurchaseFrequency,
+      latestInterval,
       props.item.numberOfPurchases,
-    ),
-    lastPurchasedDate: new Date(),
-    nextPurchaseDate: addDays(
-      today,
-      parseInt(props.item.purchaseFrequency, 10),
-    ),
-    numberOfPurchases: props.item.numberOfPurchases + 1,
+    );
+
+    const addDays = (date, days) => {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    };
+
+    return {
+      purchaseFrequency: newPurchaseFrequency,
+      lastPurchasedDate: new Date(),
+      nextPurchaseDate: addDays(today, prevPurchaseFrequency),
+      numberOfPurchases: props.item.numberOfPurchases + 1,
+    };
   };
 
-  const db = fb.firestore();
-  const dbItem = db.collection(getLocalToken()).doc(props.item.id);
+  const updateServerItem = (documentId, data) => {
+    const db = fb.firestore();
+    const dbItem = db.collection(getLocalToken()).doc(documentId);
+    dbItem
+      .update(data)
+      .then(function() {
+        console.log('New data written!');
+      })
+      .catch(function(error) {
+        console.error('Error writing new data to document: ', error);
+      });
+  };
 
   const handleCheck = event => {
-    if (event.target.checked) {
-      dbItem
-        .update(newItemData)
-        .then(function() {
-          console.log('New data written!');
-        })
-        .catch(function(error) {
-          console.error('Error writing new data to document: ', error);
-        });
-    } else {
-      dbItem
-        .update(oldItemData)
-        .then(function() {
-          console.log('Old data written!');
-        })
-        .catch(function(error) {
-          console.error('Error writing old data to document: ', error);
-        });
+    event.preventDefault();
+    if (isChecked === false) {
+      setIsChecked(true);
+      updateServerItem(props.item.id, generateUpdatedItemData());
     }
   };
 
@@ -87,12 +87,9 @@ function ItemRow(props) {
       <label>
         <input
           type="checkbox"
+          value={isChecked}
           onChange={handleCheck}
-          defaultChecked={
-            props.item.lastPurchasedDate
-              ? Date.now() / 1000 - props.item.lastPurchasedDate.seconds < 86400
-              : false
-          }
+          defaultChecked={isChecked}
         />
         {props.item.itemName}
       </label>
