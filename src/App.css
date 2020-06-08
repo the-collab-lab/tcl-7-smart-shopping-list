@@ -158,8 +158,33 @@ label.hover {
 
 :root {
   --color-gray: #767676;
+  --color-light-green: #88c057;
+  --color-light-orange: rgba(238, 175, 75, 0.67);
+  --color-light-red: rgba(237, 63, 50, 0.67);
 }
 
+/* Layout */
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.fl-grow1 {
+  flex-grow: 1;
+}
+.fl-grow2 {
+  flex-grow: 2;
+}
+.fl-grow3 {
+  flex-grow: 3;
+}
+
+.fl-spacebetween {
+  justify-content: space-between;
+}
 /* Font style */
 .normal {
   font-weight: normal;
@@ -199,6 +224,18 @@ label.hover {
 
 .bg-green {
   background-color: #436b1c;
+}
+
+.bg-light-green {
+  background-color: var(--color-light-green);
+}
+
+.bg-light-orange {
+  background-color: var(--color-light-orange);
+}
+
+.bg-light-red {
+  background-color: var(--color-light-red);
 }
 
 /* Color */
@@ -382,14 +419,48 @@ label.hover {
 }
 /* placeholder css to test button style */
 .form-button label {
-  display: inline-block;
-  background-color: #ddd;
   margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
 }
 
-.form-button label:hover {
-  background-color: #878787;
+.form-button label.bg-light-green:hover {
+  background-color: #88c057;
+  border: 2px solid rgba(0, 0, 0, 0.33);
+}
+
+.form-button label.bg-light-orange:hover {
+  background-color: #eeaf4b;
+  border: 2px solid rgba(0, 0, 0, 0.33);
+}
+
+.form-button label.bg-light-red:hover {
+  background-color: #ed3f32;
+  border: 2px solid rgba(0, 0, 0, 0.33);
+}
+
+/* List Styling */
+.check-list li {
+  border-radius: 4px;
+  margin: 12px;
+}
+
+.checkbox-input input {
+  width: 30px;
+  height: 18px;
+  vertical-align: center;
+  position: relative;
+  top: -2px;
+  overflow: hidden;
+}
+
+.filter-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-button {
+  background-color: rgb(107, 83, 126);
+  border-radius: 4px;
+  padding: 4px 6px 4px 6px;
+  color: white;
 }
