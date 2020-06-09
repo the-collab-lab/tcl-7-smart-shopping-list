@@ -27,7 +27,12 @@ function DeleteItem({ id }) {
   };
 
   return (
-    <Button size="sm" className="float-right" onClick={close}>
+    <Button
+      variant="outline-info"
+      size="sm"
+      className="float-right"
+      onClick={close}
+    >
       x
     </Button>
   );
