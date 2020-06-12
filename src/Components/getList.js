@@ -28,23 +28,21 @@ function EmptyList() {
 }
 
 function ItemRow(props) {
-  const [isChecked, setIsChecked] = useState(
-    props.item.lastPurchasedDate
-      ? Date.now() / 1000 - props.item.lastPurchasedDate.seconds < 86400
-      : false,
-  );
+  const { item } = props;
+  const [isChecked, setIsChecked] = useState(false);
 
   const generateUpdatedItemData = () => {
     const today = new Date();
-    const prevPurchaseFrequency = parseInt(props.item.purchaseFrequency, 10);
+    const prevPurchaseFrequency = parseInt(item.purchaseFrequency, 10);
     const latestInterval = Math.floor(
-      (today.getTime() - props.item.lastPurchasedDate.toMillis()) /
+      (today.getTime() - item.lastPurchasedDate.toMillis()) /
         (1000 * 3600 * 24),
     );
+
     const newPurchaseFrequency = calculateEstimate(
       prevPurchaseFrequency,
       latestInterval,
-      props.item.numberOfPurchases,
+      item.numberOfPurchases,
     );
 
     const addDays = (date, days) => {
@@ -57,7 +55,7 @@ function ItemRow(props) {
       purchaseFrequency: newPurchaseFrequency,
       lastPurchasedDate: new Date(),
       nextPurchaseDate: addDays(today, prevPurchaseFrequency),
-      numberOfPurchases: props.item.numberOfPurchases + 1,
+      numberOfPurchases: item.numberOfPurchases + 1,
     };
   };
 
@@ -75,10 +73,12 @@ function ItemRow(props) {
   };
 
   const handleCheck = event => {
-    event.preventDefault();
     if (isChecked === false) {
       setIsChecked(true);
       updateServerItem(props.item.id, generateUpdatedItemData());
+    } else {
+      event.preventDefault();
+      setIsChecked(false);
     }
   };
 
@@ -89,22 +89,55 @@ function ItemRow(props) {
           type="checkbox"
           value={isChecked}
           onChange={handleCheck}
-          defaultChecked={isChecked}
+          defaultChecked={
+            item.lastPurchasedDate
+              ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
+              : false
+          }
         />
-        {props.item.itemName}
+        {item.itemName}
       </label>
     </li>
   );
 }
 
 function FullList(props) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+  };
+
+  const searchList = props.data.filter(item => {
+    return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>
-      <ul className="tl f2">
-        {props.data.map(item => (
-          <ItemRow key={item.id} item={item} />
-        ))}
+      <ul className="tl f2 check-list">
+        <li className="bg-white pa1 shadow">
+          <div className="filter-input">
+            <input
+              type="text"
+              placeholder="Filter List"
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <button className="filter-button" onClick={clearSearch}>
+              {' '}
+              X{' '}
+            </button>
+          </div>
+        </li>
+
+        {searchTerm
+          ? searchList.map(item => <ItemRow key={item.id} item={item} />)
+          : props.data.map(item => <ItemRow key={item.id} item={item} />)}
       </ul>
     </div>
   );
