@@ -437,7 +437,6 @@ label.hover {
   border: 2px solid rgba(0, 0, 0, 0.33);
 }
 
-
 /* List Styling */
 .check-list li {
   border-radius: 4px;
@@ -445,12 +444,12 @@ label.hover {
 }
 
 .checkbox-input input {
-    width: 30px;
-    height: 18px;
-    vertical-align: center;
-    position: relative;
-    top: -2px;
-    overflow: hidden;
+  width: 30px;
+  height: 18px;
+  vertical-align: center;
+  position: relative;
+  top: -2px;
+  overflow: hidden;
 }
 
 .filter-input {
