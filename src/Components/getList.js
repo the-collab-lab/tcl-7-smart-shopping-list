@@ -27,8 +27,6 @@ function EmptyList() {
   );
 }
 
-
-
 function ItemRow(props) {
   const { item } = props;
   const [isChecked, setIsChecked] = useState(false);
@@ -84,8 +82,38 @@ function ItemRow(props) {
     }
   };
 
+  const setUrgencyColor = item => {
+    const today = new Date();
+    const getDaysToNextPurchase = item => {
+      return Math.floor(
+        (today.getTime() - item.lastPurchasedDate.toMillis()) /
+          (1000 * 3600 * 24),
+      );
+    };
+    const itemDaysToNextPurchase = getDaysToNextPurchase(item);
+
+    // Inactive (only 1 purchase in the database)
+    if (item.numberOfPurchases <= 1) {
+      return 'bg-white';
+    }
+
+    if (itemDaysToNextPurchase < 7) {
+      // Need to buy Soon (fewer than 7 days)
+      return 'bg-light-green';
+    } else if (itemDaysToNextPurchase > 30) {
+      // Need to buy Not soon (more than 30 days)
+      return '';
+    } else if (itemDaysToNextPurchase < 30) {
+      // Need to buy Kind of soon (between 7 & 30 days)
+      return 'bg-light-orange';
+    } else {
+      // Inactive (the purchase is really out of date [2x the estimate])
+      return 'bg-white';
+    }
+  };
+
   return (
-    <li className="bg-white pa1 shadow">
+    <li className={setUrgencyColor(item) + ' pa1 shadow'}>
       <label>
         <input
           type="checkbox"
@@ -118,7 +146,56 @@ function FullList(props) {
     return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  
+  function itemSort(itemList) {
+    const groupBy = (arr, criteria) => {
+      return arr.reduce(function(obj, item) {
+        // Check if the criteria is a function to run on the item or a property of it
+        var key =
+          typeof criteria === 'function' ? criteria(item) : item[criteria];
+
+        // If the key doesn't exist yet, create it
+        if (!obj.hasOwnProperty(key)) {
+          obj[key] = [];
+        }
+
+        // Push the value to the object
+        obj[key].push(item);
+
+        // Return the object to the next item in the loop
+        return obj;
+      }, {});
+    };
+    // groups by purchase frequency returning obj with key as purchase frequency
+    // and value as an array of items with that purchase frequencey
+    const groupedList = groupBy(itemList, 'purchaseFrequency');
+    const today = new Date();
+    // iterates over objects keys which is each purchase frequency
+    Object.keys(groupedList).forEach(frequencyGroup => {
+      // Sorts each purchase frequency array by estimated days until purchase and then alphabetically
+      groupedList[frequencyGroup].sort((item1, item2) => {
+        const getDaysToNextPurchase = item => {
+          return Math.floor(
+            (today.getTime() - item.lastPurchasedDate.toMillis()) /
+              (1000 * 3600 * 24),
+          );
+        };
+
+        const item1DaysTillPurchase = getDaysToNextPurchase(item1);
+        const item2DaysTillPurchase = getDaysToNextPurchase(item2);
+        // checks to see if they have the same days till purchase
+        if (item1DaysTillPurchase === item2DaysTillPurchase) {
+          // if so then sort by name
+          return item1.itemName > item2.itemName ? 1 : -1;
+        } else {
+          // if not then sort by days till purchase
+          return item1DaysTillPurchase > item2DaysTillPurchase ? 1 : -1;
+        }
+      });
+    });
+    // take all the values from obj which comes back as array
+    // and flatten them so you get a single sorted array
+    return Object.values(groupedList).flat();
+  }
 
   return (
     <div className="grocery-list">
@@ -141,46 +218,13 @@ function FullList(props) {
 
         {searchTerm
           ? searchList.map(item => <ItemRow key={item.id} item={item} />)
-          : props.data.map(item => <ItemRow key={item.id} item={item} />)}
+          : itemSort(props.data).map(item => (
+              <ItemRow key={item.id} item={item} />
+            ))}
       </ul>
     </div>
   );
 }
-
-
-
-
-  var groupBy = function (arr, criteria) {
-	return arr.reduce(function (obj, item) {
-
-		// Check if the criteria is a function to run on the item or a property of it
-		var key = typeof criteria === 'function' ? criteria(item) : item[criteria];
-
-		// If the key doesn't exist yet, create it
-		if (!obj.hasOwnProperty(key)) {
-			obj[key] = [];
-		}
-
-		// Push the value to the object
-		obj[key].push(item);
-
-		// Return the object to the next item in the loop
-		return obj;
-
-	}, {});
-};
-
-const groupedList = groupBy(props.data, 'purchaseFrequency');
-Object.keys(groupedList).forEach((frequencyGroup) => {
-  groupedList[frequencyGroup].sort((item1, item2) => {
-    if (item1.lastPurchasedDate === item2.lastPurchasedDate) {
-      return item1.itemName > item2.itemName ? 1 : -1;
-    } else {
-      return item1.lastPurchasedDate > item2.lastPurchasedDate ? 1 : -1;
-    }
-  });
-});
-
 
 function GetList() {
   return (
