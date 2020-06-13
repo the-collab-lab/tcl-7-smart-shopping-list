@@ -27,17 +27,7 @@ function EmptyList() {
   );
 }
 
-const FrequencyColor = props => {
-  if (props.data.purchaseFrequency <= 7) {
-    return '#88c057';
-  } else if (props.data.purchaseFrequencyy <= 14) {
-    return '#eeaf4b';
-  } else if (props.data.purchaseFrequency <= 30) {
-    return '#ed3f32';
-  } else {
-    return 'white';
-  }
-};
+
 
 function ItemRow(props) {
   const { item } = props;
@@ -128,6 +118,8 @@ function FullList(props) {
     return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
+  
+
   return (
     <div className="grocery-list">
       <h1>Groceries</h1>
@@ -155,31 +147,40 @@ function FullList(props) {
   );
 }
 
-function EstimatedDaystoNextPurchase(props) {
-  //lastPurchaseDate to seconds
-  // estimated next purchase date - is last purhchased date + PurchaseFrequency
-  // subtract today's date from estimated purchase date
-  const millisecPerDay = 100 * 60 * 60 * 24;
-  let estimatedNextPurchaseDate = new Date(props.data.lastPurchasedDate);
-  estimatedNextPurchaseDate.setDate(
-    estimatedNextPurchaseDate.getDate() + props.data.purchaseFrequency,
-  );
-  let currentDate = Date.now();
 
-  console.log(currentDate);
-}
 
-function sortedItems(props) {
-  props.data.sort((a, b) => {
-    /* sort by estimated number of days until next purchase - 
-    is this stored in a variable from previous issue or is it calculated by nextPurchaseDate - LastPurchaseDate */
-    if (a.estimate === b.estimate) {
-      // sorts alphabetically if estimated days until next purchase are the same
-      return a.itemName > b.itemName ? 1 : -1;
+
+  var groupBy = function (arr, criteria) {
+	return arr.reduce(function (obj, item) {
+
+		// Check if the criteria is a function to run on the item or a property of it
+		var key = typeof criteria === 'function' ? criteria(item) : item[criteria];
+
+		// If the key doesn't exist yet, create it
+		if (!obj.hasOwnProperty(key)) {
+			obj[key] = [];
+		}
+
+		// Push the value to the object
+		obj[key].push(item);
+
+		// Return the object to the next item in the loop
+		return obj;
+
+	}, {});
+};
+
+const groupedList = groupBy(props.data, 'purchaseFrequency');
+Object.keys(groupedList).forEach((frequencyGroup) => {
+  groupedList[frequencyGroup].sort((item1, item2) => {
+    if (item1.lastPurchasedDate === item2.lastPurchasedDate) {
+      return item1.itemName > item2.itemName ? 1 : -1;
+    } else {
+      return item1.lastPurchasedDate > item2.lastPurchasedDate ? 1 : -1;
     }
-    return a.estimate - b.estimate;
   });
-}
+});
+
 
 function GetList() {
   return (
