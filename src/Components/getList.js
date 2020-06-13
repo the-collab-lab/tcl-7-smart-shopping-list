@@ -113,7 +113,7 @@ function ItemRow(props) {
   };
 
   const frequencyColor = {
-    inactive: 'bg-white',
+    inactive: 'bg-gray',
     Soon: 'bg-light-green',
     'Kind of soon': 'bg-light-orange',
     'Not soon': 'bg-light-red',
