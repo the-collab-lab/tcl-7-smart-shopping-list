@@ -82,41 +82,51 @@ function ItemRow(props) {
     }
   };
 
-  const setUrgencyColor = item => {
+  const getFrequency = item => {
     const today = new Date();
     const getDaysToNextPurchase = item => {
       return Math.floor(
-        (today.getTime() - item.lastPurchasedDate.toMillis()) /
+        (item.nextPurchaseDate.toMillis() - today.getTime()) /
           (1000 * 3600 * 24),
       );
     };
     const itemDaysToNextPurchase = getDaysToNextPurchase(item);
 
-    // Inactive (only 1 purchase in the database)
-    if (item.numberOfPurchases <= 1) {
-      return 'bg-white';
+    // Inactive (only 1 purchase in the database) or (the purchase is really out of date [2x the estimate])
+    if (
+      item.numberOfPurchases <= 1 ||
+      item.purchaseFrequency * 2 < itemDaysToNextPurchase
+    ) {
+      return 'inactive';
     }
 
     if (itemDaysToNextPurchase < 7) {
       // Need to buy Soon (fewer than 7 days)
-      return 'bg-light-green';
+      return 'Soon';
     } else if (itemDaysToNextPurchase > 30) {
       // Need to buy Not soon (more than 30 days)
-      return '';
+      return 'Not soon';
     } else if (itemDaysToNextPurchase < 30) {
       // Need to buy Kind of soon (between 7 & 30 days)
-      return 'bg-light-orange';
-    } else {
-      // Inactive (the purchase is really out of date [2x the estimate])
-      return 'bg-white';
+      return 'Kind of soon';
     }
   };
 
+  const frequencyColor = {
+    inactive: 'bg-white',
+    Soon: 'bg-light-green',
+    'Kind of soon': 'bg-light-orange',
+    'Not soon': 'bg-light-red',
+  };
+
   return (
-    <li className={setUrgencyColor(item) + ' pa1 shadow'}>
+    <li className={frequencyColor[getFrequency(item)] + ' pa1 shadow'}>
       <label>
         <input
           type="checkbox"
+          aria-label={`${
+            getFrequency(item) === 'inactive' ? '' : 'Purchase'
+          } ${getFrequency(item)}`}
           value={isChecked}
           onChange={handleCheck}
           defaultChecked={
