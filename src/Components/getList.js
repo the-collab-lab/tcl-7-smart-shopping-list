@@ -3,6 +3,8 @@ import { FirestoreCollection } from 'react-firestore';
 import { getLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import DeleteItem from './deleteItem.js';
+
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
 
@@ -27,6 +29,7 @@ function EmptyList() {
   );
 }
 
+const FullList = props => {
 function ItemRow(props) {
   const { item } = props;
   const [isChecked, setIsChecked] = useState(false);
@@ -153,7 +156,10 @@ function FullList(props) {
   };
 
   const searchList = props.data.filter(item => {
-    return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
+    return (
+      item.itemName &&
+      item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   function itemSort(itemList) {
@@ -227,6 +233,38 @@ function FullList(props) {
         </li>
 
         {searchTerm
+
+          ? searchList.map(item => <GroceryItem item={item} />)
+          : props.data.map(item => <GroceryItem item={item} />)}
+      </ul>
+    </div>
+  );
+};
+
+function GroceryItem(props) {
+  const [isChecked, setCheck] = useState(false);
+  const { item } = props;
+  return (
+    <li className="bg-white pa1 shadow" key={item.id}>
+      <div className="checkbox-input">
+        <label>
+          <input
+            type="checkbox"
+            value={isChecked}
+            onChange={() => setCheck(checked => !checked)}
+            defaultChecked={
+              item.lastPurchasedDate
+                ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
+                : false
+            }
+          />
+          {item.itemName}
+        </label>
+        <DeleteItem id={item.id} />
+      </div>
+    </li>
+  );
+
           ? searchList.map(item => <ItemRow key={item.id} item={item} />)
           : itemSort(props.data).map(item => (
               <ItemRow key={item.id} item={item} />

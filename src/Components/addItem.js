@@ -14,6 +14,11 @@ function AddItem() {
   const updateFrequency = e => setPurchaseFrequency(e.target.value);
   const clearError = () => setErrorMsg(null);
 
+
+  clearError = () => this.setState({ errorMsg: null });
+
+  addItem = e => {
+
   const addItem = e => {
     e.preventDefault();
     const db = fb.firestore();
@@ -26,11 +31,6 @@ function AddItem() {
         if (querySnapshot.size) {
           setErrorMsg('Item is already in list.');
         } else {
-          const date = new Date();
-          const nextPurchaseDate = new Date(date);
-          nextPurchaseDate.setDate(
-            nextPurchaseDate.getDate() + parseInt(purchaseFrequency, 10),
-          );
 
           collection
             .add({
@@ -115,9 +115,21 @@ function AddItem() {
             {errorMsg}
           </Alert>{' '}
         </div>
-      ) : null}
-    </form>
-  );
+        <button type="submit" className="bg-green ph2 pv1 white f2 b shadow">
+          Add It
+        </button>
+        <br />
+        {this.state.errorMsg ? (
+          <div>
+            {' '}
+            <Alert dismissible onClose={this.clearError} variant="danger">
+              {this.state.errorMsg}
+            </Alert>{' '}
+          </div>
+        ) : null}
+      </form>
+    );
+  }
 }
 
 export default AddItem;
