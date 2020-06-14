@@ -3,6 +3,7 @@ import { FirestoreCollection } from 'react-firestore';
 import { getLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import DeleteItem from './deleteItem.js';
 
 function EmptyList() {
   let history = useHistory();
@@ -37,7 +38,10 @@ const FullList = props => {
   };
 
   const searchList = props.data.filter(item => {
-    return item.itemName.toLowerCase().includes(searchTerm.toLowerCase());
+    return (
+      item.itemName &&
+      item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   return (
@@ -86,6 +90,7 @@ function GroceryItem(props) {
           />
           {item.itemName}
         </label>
+        <DeleteItem id={item.id} />
       </div>
     </li>
   );
