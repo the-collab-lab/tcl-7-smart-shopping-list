@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
-import { Button, Alert } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 function DeleteItem({ id }) {
   const close = () => {
