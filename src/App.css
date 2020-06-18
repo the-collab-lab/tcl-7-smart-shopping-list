@@ -218,6 +218,10 @@ label.hover {
   background-color: white;
 }
 
+.bg-gray {
+  background-color: #e4e7e9;
+}
+
 .bg-blue {
   background-color: #dae7ef;
 }
