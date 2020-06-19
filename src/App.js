@@ -5,6 +5,7 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
+import { Image } from 'react-bootstrap';
 
 import {
   BrowserRouter as Router,
@@ -19,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main className="bg-blue pa1">
+        <main className="wallpaper pa1">
           <Switch>
             <Route path="/list-view">
               <Listview />
