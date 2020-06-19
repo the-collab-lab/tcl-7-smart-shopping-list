@@ -97,6 +97,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #c6e2b2;
 }
 
 main {
@@ -111,7 +112,7 @@ footer {
 footer nav {
   display: flex;
   width: 100%;
-  background-color: #fbd490;
+  background-color: #757178;
 }
 
 footer nav a {
@@ -120,7 +121,7 @@ footer nav a {
 }
 
 footer nav a.active {
-  background-color: #e0b877;
+  background-color: #d19106;
 }
 
 footer nav a:first-of-type {
@@ -238,6 +239,51 @@ label.hover {
 
 .bg-light-red {
   background-color: var(--color-light-red);
+}
+
+/* Background Colors New Test */
+
+.bg-deep-blue {
+  background-color: #c6e2b2;
+}
+
+.bg-light-pink {
+  background-color: #fea49f;
+}
+
+.bg-med-yellow {
+  background-color: #fbaf08;
+}
+
+.bg-light-blue {
+  background-color: #00a0a0;
+}
+
+.bg-teal-green {
+  background-color: #007f4f;
+}
+
+/* New Color Test */
+/* Background Colors New Test */
+
+.bg-deep-blue {
+  color: #101357;
+}
+
+.ight-pink {
+  color: #fea49f;
+}
+
+.med-yellow {
+  color: #fbaf08;
+}
+
+.light-blue {
+  color: #00a0a0;
+}
+
+.teal-green {
+  color: #007f4f;
 }
 
 /* Color */
@@ -411,6 +457,11 @@ label.hover {
 /* border color */
 .b--gray {
   border-color: var(--color-gray);
+}
+
+/* border edges */
+.brd {
+  border-radius: 4px;
 }
 
 /* Form Styling */
