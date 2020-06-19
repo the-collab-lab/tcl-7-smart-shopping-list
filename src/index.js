@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import { fb } from './lib/firebase';
 import { FirestoreProvider } from 'react-firestore';
 import './index.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <FirestoreProvider firebase={fb}>
+    <CssBaseline />
     <App />
   </FirestoreProvider>,
   document.getElementById('root'),
