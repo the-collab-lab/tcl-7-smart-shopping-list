@@ -222,6 +222,11 @@ label.hover {
   background-color: #dae7ef;
 }
 
+.wallpaper {
+  background-image: url('/img/fruits.jpg');
+  background-size: cover;
+}
+
 .bg-green {
   background-color: #436b1c;
 }
