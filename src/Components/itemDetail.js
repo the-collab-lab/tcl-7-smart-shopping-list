@@ -6,7 +6,18 @@ import { FirestoreDocument } from 'react-firestore';
 
 function ItemDetailPage() {
   let { docId } = useParams();
+  // date formater
 
+  // calculate days until next purchase
+  // this is duplicated from getList lines 87-93. Should refactor in seperate issue.
+  const today = new Date();
+  const getDaysToNextPurchase = item => {
+    return Math.floor(
+      (item.nextPurchaseDate.toMillis() - today.getTime()) / (1000 * 3600 * 24),
+    );
+  };
+
+  // top navigation to go back
   return (
     <FirestoreDocument
       path={`${getLocalToken()}/${docId}`}
@@ -20,7 +31,7 @@ function ItemDetailPage() {
               <li>Last purchase date: {data.lastPurchaseDate}</li>
               <li>
                 Estimated number of days until the next purchase:{' '}
-                {data.purchaseFrequency}
+                {getDaysToNextPurchase(data)}
               </li>
               <li>
                 Number of times the item has been purchase:{' '}
