@@ -97,7 +97,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #c6e2b2;
+  background-color: white;
 }
 
 main {
@@ -226,7 +226,7 @@ label.hover {
 }
 
 .wallpaper {
-  background-image: url('/img/fruits.jpg');
+  background: url('/img/organic-veg.svg') #c6e2b2;
   background-size: cover;
 }
 
@@ -249,7 +249,7 @@ label.hover {
 /* Background Colors New Test */
 
 .bg-deep-blue {
-  background-color: #c6e2b2;
+  background-color: #101357;
 }
 
 .bg-light-pink {
@@ -269,13 +269,12 @@ label.hover {
 }
 
 /* New Color Test */
-/* Background Colors New Test */
 
-.bg-deep-blue {
+.deep-blue {
   color: #101357;
 }
 
-.ight-pink {
+.light-pink {
   color: #fea49f;
 }
 
@@ -521,4 +520,47 @@ label.hover {
   border-radius: 4px;
   padding: 4px 6px 4px 6px;
   color: white;
+}
+
+.btn {
+  background-color: #456102;
+  width: 250px;
+  height: 60px;
+  margin: 1% auto;
+  text-align: center;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #c6e2b2;
+  color: #456102;
+}
+
+p.line-text {
+  margin: 5%;
+  position: relative;
+  font-size: 20px;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+}
+p.line-text:before,
+p.line-text:after {
+  position: absolute;
+  top: 50%;
+  overflow: hidden;
+  width: 50%;
+  height: 1px;
+  content: '\a0';
+  color: #101357;
+  background-color: #101357;
+}
+p.line-text:before {
+  margin-left: -50%;
+  text-align: right;
+}
+
+.wrapper {
+  width: 50%;
+  align-items: center;
 }
