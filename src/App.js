@@ -16,7 +16,7 @@ import {
 
 function App() {
   return (
-    <div className="App">
+    <div className="App pa2">
       <Router>
         <main>
           <Switch>
@@ -58,7 +58,7 @@ function SignIn() {
   };
 
   return (
-    <div className="shadow bg-white brd pa2">
+    <div className="wrapper shadow bg-white brd pa2">
       <Form className="pa2" onSubmit={handleSubmit}>
         <h1 className="deep-blue f1 pa2 b">
           Welcome to your smart shopping list!
