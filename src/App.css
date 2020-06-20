@@ -112,7 +112,7 @@ footer {
 footer nav {
   display: flex;
   width: 100%;
-  background-color: #757178;
+  background-color: #fbd490;
 }
 
 footer nav a {
@@ -121,7 +121,7 @@ footer nav a {
 }
 
 footer nav a.active {
-  background-color: #d19106;
+  background-color: #e0b877;
 }
 
 footer nav a:first-of-type {
