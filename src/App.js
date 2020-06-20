@@ -14,7 +14,6 @@ import {
   Route,
   NavLink,
   Link,
-  useParams,
 } from 'react-router-dom';
 
 function App() {
