@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main className="wallpaper pa1">
+        <main>
           <Switch>
             <Route path="/list-view">
               <Listview />
@@ -58,7 +58,7 @@ function SignIn() {
   };
 
   return (
-    <Container className="shadow bg-white brd pa2 wrapper">
+    <div className="shadow bg-white brd pa2">
       <Form className="pa2" onSubmit={handleSubmit}>
         <h1 className="deep-blue f1 pa2 b">
           Welcome to your smart shopping list!
@@ -72,7 +72,7 @@ function SignIn() {
       <div>
         <ShareList />
       </div>
-    </Container>
+    </div>
   );
 }
 
