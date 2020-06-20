@@ -39,6 +39,11 @@ function ItemDetailPage() {
           <div>loading...</div>
         ) : (
           <div className="shadow bg-white pa2">
+            <nav className="pa1 flex">
+              <Link to="/list-view">
+                <img src="/img/arrow_back-24px.svg" alt="back"></img>
+              </Link>
+            </nav>
             <h1 className="b f1">{data.itemName}</h1>
             <ul className="f5 gray">
               <li>
@@ -53,7 +58,6 @@ function ItemDetailPage() {
                 {data.numberOfPurchases}
               </li>
             </ul>
-            <Link to="/list-view">go back to the list</Link>
           </div>
         );
       }}
