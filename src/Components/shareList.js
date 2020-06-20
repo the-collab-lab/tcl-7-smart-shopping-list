@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../App.css';
+import { Button, Form } from 'react-bootstrap';
 import { fb } from '../lib/firebase';
 import { setLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
@@ -32,11 +34,9 @@ export function ShareList() {
   };
 
   return (
-    <form className="shadow bg-white pa2" onSubmit={handleSubmitShareCode}>
-      <h1 className="b f1">Welcome to your smart shopping list!</h1>
-      <p className="f3 pv2">
-        Enter your share code below. Then tap "Join shopping list" to get
-        started.
+    <Form onSubmit={handleSubmitShareCode} className="pa2">
+      <p className="f3 pt2 deep-blue">
+        You can also join an existing list by entering a share code below.
       </p>
       <div className="input-field-hover pv2">
         <input
@@ -53,19 +53,8 @@ export function ShareList() {
           Share Code
         </label>
       </div>
-      <p>
-        <button className="bg-green ph2 pv1 white f2 b">
-          Join Shopping List
-        </button>
-      </p>
-      <p className="f5 gray">
-        You can also{' '}
-        <a className="black" href="/">
-          create a new shopping list
-        </a>
-        .
-      </p>
-    </form>
+      <Button className="pa2 white f2 b btn">Join Shopping List</Button>
+    </Form>
   );
 }
 
