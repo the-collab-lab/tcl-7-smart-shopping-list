@@ -66,9 +66,7 @@ function SignIn() {
         <h1 className="deep-blue f1 pa2">
           Welcome to your smart shopping list!
         </h1>
-        <p className="deep-blue f3">
-          Tap “Create shopping list” to get started.
-        </p>
+        <p className="deep-blue f3"></p>
         <button className="bg-teal-green pa2 white f2 b">
           Create shopping list
         </button>
