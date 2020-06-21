@@ -209,51 +209,51 @@ function FullList(props) {
   }
 
   return (
-    <div className="grocery-list">
-      <h1>Groceries</h1>
-      <ul className="tl f2 check-list">
-        <li className="bg-white pa1 shadow">
-          <div className="filter-input">
-            <input
-              type="text"
-              placeholder="Filter List"
-              value={searchTerm}
-              onChange={handleChange}
-            />
-            <button className="filter-button" onClick={clearSearch}>
-              {' '}
-              X{' '}
-            </button>
-          </div>
-        </li>
+    <React.Fragment>
+      <div className="grocery-list">
+        <h1>Groceries</h1>
+        <ul className="tl f2 check-list">
+          <li className="bg-white pa1 shadow">
+            <div className="filter-input">
+              <input
+                type="text"
+                placeholder="Filter List"
+                value={searchTerm}
+                onChange={handleChange}
+              />
+              <button className="filter-button" onClick={clearSearch}>
+                {' '}
+                X{' '}
+              </button>
+            </div>
+          </li>
 
-        {searchTerm
-          ? searchList.map(item => <ItemRow key={item.id} item={item} />)
-          : itemSort(props.data).map(item => (
-              <ItemRow key={item.id} item={item} />
-            ))}
-      </ul>
-    </div>
+          {searchTerm
+            ? searchList.map(item => <ItemRow key={item.id} item={item} />)
+            : itemSort(props.data).map(item => (
+                <ItemRow key={item.id} item={item} />
+              ))}
+        </ul>
+      </div>
+      <Footer />
+    </React.Fragment>
   );
 }
 
 function GetList() {
   return (
-    <React.Fragment>
-      <FirestoreCollection
-        path={`${getLocalToken()}/`}
-        render={({ isLoading, data }) => {
-          return isLoading ? (
-            <div>loading...</div>
-          ) : data.length === 0 ? (
-            <EmptyList />
-          ) : (
-            <FullList data={data} />
-          );
-        }}
-      />
-      <Footer />
-    </React.Fragment>
+    <FirestoreCollection
+      path={`${getLocalToken()}/`}
+      render={({ isLoading, data }) => {
+        return isLoading ? (
+          <div>loading...</div>
+        ) : data.length === 0 ? (
+          <EmptyList />
+        ) : (
+          <FullList data={data} />
+        );
+      }}
+    />
   );
 }
 
