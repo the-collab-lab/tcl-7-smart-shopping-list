@@ -6,7 +6,6 @@ import { useState } from 'react';
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
 import Footer from './footerNav.js';
-import { Form } from 'react-bootstrap';
 
 function EmptyList() {
   const history = useHistory();

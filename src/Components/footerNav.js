@@ -1,9 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
-    <Router>
+    <div>
+      <Route path="/list-view"></Route>
+      <Route path="/add-item"></Route>
       <footer>
         <nav>
           <NavLink to="/list-view">
@@ -14,7 +16,7 @@ function Footer() {
           </NavLink>
         </nav>
       </footer>
-    </Router>
+    </div>
   );
 }
 

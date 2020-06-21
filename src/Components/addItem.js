@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../App.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
 import { Alert } from 'react-bootstrap';
