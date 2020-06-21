@@ -97,8 +97,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: url('/img/organic-veg.svg') #c6e2b2;
-  background-size: cover;
 }
 
 main {

@@ -16,9 +16,9 @@ import {
 
 function App() {
   return (
-    <div className="App pa2">
+    <div className="App">
       <Router>
-        <main>
+        <main className="pt2 wallpaper">
           <Switch>
             <Route path="/list-view">
               <Listview />
