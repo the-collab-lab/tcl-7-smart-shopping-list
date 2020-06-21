@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
+import Footer from './footerNav.js';
+import { Form } from 'react-bootstrap';
 
 function EmptyList() {
   const history = useHistory();
@@ -238,18 +240,21 @@ function FullList(props) {
 
 function GetList() {
   return (
-    <FirestoreCollection
-      path={`${getLocalToken()}/`}
-      render={({ isLoading, data }) => {
-        return isLoading ? (
-          <div>loading...</div>
-        ) : data.length === 0 ? (
-          <EmptyList />
-        ) : (
-          <FullList data={data} />
-        );
-      }}
-    />
+    <React.Fragment>
+      <FirestoreCollection
+        path={`${getLocalToken()}/`}
+        render={({ isLoading, data }) => {
+          return isLoading ? (
+            <div>loading...</div>
+          ) : data.length === 0 ? (
+            <EmptyList />
+          ) : (
+            <FullList data={data} />
+          );
+        }}
+      />
+      <Footer />
+    </React.Fragment>
   );
 }
 
