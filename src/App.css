@@ -218,17 +218,18 @@ label.hover {
 }
 
 /* backgrounds */
+
+.wallpaper {
+  background: url('/img/organic-veg.svg') #c6e2b2;
+  background-size: cover;
+}
+
 .bg-white {
   background-color: white;
 }
 
 .bg-blue {
   background-color: #dae7ef;
-}
-
-.wallpaper {
-  background: url('/img/organic-veg.svg') #c6e2b2;
-  background-size: cover;
 }
 
 .bg-green {
@@ -245,6 +246,10 @@ label.hover {
 
 .bg-light-red {
   background-color: var(--color-light-red);
+}
+
+.bg-gray {
+  background-color: #c9c9c9;
 }
 
 /* Background Colors New Test */
