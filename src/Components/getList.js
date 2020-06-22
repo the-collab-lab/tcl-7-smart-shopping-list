@@ -6,6 +6,7 @@ import { useState } from 'react';
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
 import { Link } from 'react-router-dom';
+import Footer from './footerNav.js';
 
 function EmptyList() {
   const history = useHistory();
@@ -209,31 +210,34 @@ function FullList(props) {
   }
 
   return (
-    <div className="grocery-list">
-      <h1>Groceries</h1>
-      <ul className="tl f2 check-list">
-        <li className="bg-white pa1 shadow">
-          <div className="filter-input">
-            <input
-              type="text"
-              placeholder="Filter List"
-              value={searchTerm}
-              onChange={handleChange}
-            />
-            <button className="filter-button" onClick={clearSearch}>
-              {' '}
-              X{' '}
-            </button>
-          </div>
-        </li>
+    <React.Fragment>
+      <div className="grocery-list">
+        <h1>Groceries</h1>
+        <ul className="tl f2 check-list">
+          <li className="bg-white pa1 shadow">
+            <div className="filter-input">
+              <input
+                type="text"
+                placeholder="Filter List"
+                value={searchTerm}
+                onChange={handleChange}
+              />
+              <button className="filter-button" onClick={clearSearch}>
+                {' '}
+                X{' '}
+              </button>
+            </div>
+          </li>
 
-        {searchTerm
-          ? searchList.map(item => <ItemRow key={item.id} item={item} />)
-          : itemSort(props.data).map(item => (
-              <ItemRow key={item.id} item={item} />
-            ))}
-      </ul>
-    </div>
+          {searchTerm
+            ? searchList.map(item => <ItemRow key={item.id} item={item} />)
+            : itemSort(props.data).map(item => (
+                <ItemRow key={item.id} item={item} />
+              ))}
+        </ul>
+      </div>
+      <Footer />
+    </React.Fragment>
   );
 }
 

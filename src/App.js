@@ -5,6 +5,7 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
+import { Button, Form } from 'react-bootstrap';
 import ItemDetailPage from './Components/itemDetail';
 
 import {
@@ -12,15 +13,13 @@ import {
   useHistory,
   Switch,
   Route,
-  NavLink,
-  Link,
 } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <main className="bg-blue pa1">
+        <main className="pt2 wallpaper">
           <Switch>
             <Route path="/list-item/:docId">
               <ItemDetailPage />
@@ -39,16 +38,6 @@ function App() {
             </Route>
           </Switch>
         </main>
-        <footer>
-          <nav>
-            <NavLink to="/list-view">
-              <img src="/img/list.svg" alt="view list" />
-            </NavLink>
-            <NavLink to="/add-item">
-              <img src="/img/add.svg" alt="add item" />
-            </NavLink>
-          </nav>
-        </footer>
       </Router>
     </div>
   );
@@ -73,20 +62,21 @@ function SignIn() {
   };
 
   return (
-    <form className="shadow bg-white pa2" onSubmit={handleSubmit}>
-      <h1 className="b f1">Welcome to your smart shopping list!</h1>
-      <p className="f3">Tap “Create shopping list” to get started.</p>
-      <button className="bg-green ph2 pv1 white f2 b">
-        Create shopping list
-      </button>
-      <p className="f5 gray">
-        You can also{' '}
-        <Link className="black" to="/join-existing">
-          join an existing shopping list
-        </Link>
-        .
-      </p>
-    </form>
+    <div className="wrapper shadow bg-white brd pa2">
+      <Form className="pa2" onSubmit={handleSubmit}>
+        <h1 className="deep-blue f1 pa2 b">
+          Welcome to your smart shopping list!
+        </h1>
+        <p className="deep-blue f3">Get started by creating a new list.</p>
+        <Button className="white f2 b btn" type="submit">
+          Create shopping list
+        </Button>
+      </Form>
+      <p className="line-text deep-blue">Or</p>
+      <div>
+        <ShareList />
+      </div>
+    </div>
   );
 }
 

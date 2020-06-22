@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
 /* CSS Reset */
 html {
   box-sizing: border-box;
@@ -214,6 +216,12 @@ label.hover {
 }
 
 /* backgrounds */
+
+.wallpaper {
+  background: url('/img/organic-veg.svg') #c6e2b2;
+  background-size: cover;
+}
+
 .bg-white {
   background-color: white;
 }
@@ -240,6 +248,54 @@ label.hover {
 
 .bg-light-red {
   background-color: var(--color-light-red);
+}
+
+.bg-gray {
+  background-color: #e3e3e3;
+}
+
+/* Background Colors New Test */
+
+.bg-deep-blue {
+  background-color: #101357;
+}
+
+.bg-light-pink {
+  background-color: #fea49f;
+}
+
+.bg-med-yellow {
+  background-color: #fbaf08;
+}
+
+.bg-light-blue {
+  background-color: #00a0a0;
+}
+
+.bg-teal-green {
+  background-color: #007f4f;
+}
+
+/* New Color Test */
+
+.deep-blue {
+  color: #101357;
+}
+
+.light-pink {
+  color: #fea49f;
+}
+
+.med-yellow {
+  color: #fbaf08;
+}
+
+.light-blue {
+  color: #00a0a0;
+}
+
+.teal-green {
+  color: #007f4f;
 }
 
 /* Color */
@@ -415,6 +471,11 @@ label.hover {
   border-color: var(--color-gray);
 }
 
+/* border edges */
+.brd {
+  border-radius: 4px;
+}
+
 /* Form Styling */
 .form-button input[type='radio'] {
   opacity: 0;
@@ -467,4 +528,51 @@ label.hover {
   border-radius: 4px;
   padding: 4px 6px 4px 6px;
   color: white;
+}
+
+.btn {
+  background-color: #456102;
+  width: 250px;
+  height: 60px;
+  margin: 1% auto;
+  text-align: center;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #c6e2b2;
+  color: #456102;
+}
+
+p.line-text {
+  margin: 5%;
+  position: relative;
+  font-size: 20px;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+}
+p.line-text:before,
+p.line-text:after {
+  position: absolute;
+  top: 50%;
+  overflow: hidden;
+  width: 50%;
+  height: 1px;
+  content: '\a0';
+  color: #101357;
+  background-color: #101357;
+}
+p.line-text:before {
+  margin-left: -50%;
+  text-align: right;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 0 auto;
+  min-height: 95vh;
+  max-width: 600px;
+  justify-content: center;
 }
