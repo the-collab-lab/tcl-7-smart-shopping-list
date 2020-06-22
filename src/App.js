@@ -6,6 +6,7 @@ import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
 import { Button, Form } from 'react-bootstrap';
+import ItemDetailPage from './Components/itemDetail';
 
 import {
   BrowserRouter as Router,
@@ -20,6 +21,9 @@ function App() {
       <Router>
         <main className="pt2 wallpaper">
           <Switch>
+            <Route path="/list-item/:docId">
+              <ItemDetailPage />
+            </Route>
             <Route path="/list-view">
               <Listview />
             </Route>

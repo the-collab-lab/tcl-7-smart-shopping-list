@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
+import { Link } from 'react-router-dom';
 import Footer from './footerNav.js';
 
 function EmptyList() {
@@ -136,7 +137,7 @@ function ItemRow(props) {
               : false
           }
         />
-        {item.itemName}
+        <Link to={`list-item/${item.id}`}>{item.itemName}</Link>
       </label>
     </li>
   );
