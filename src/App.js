@@ -5,6 +5,7 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
+import ItemDetailPage from './Components/itemDetail';
 
 import {
   BrowserRouter as Router,
@@ -21,6 +22,9 @@ function App() {
       <Router>
         <main className="bg-blue pa1">
           <Switch>
+            <Route path="/list-item/:docId">
+              <ItemDetailPage />
+            </Route>
             <Route path="/list-view">
               <Listview />
             </Route>
