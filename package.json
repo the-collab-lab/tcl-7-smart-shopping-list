@@ -16,11 +16,13 @@
     "react-scripts": "^3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run build:css && CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css", 
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +51,9 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^3.8.1"
+    "autoprefixer": "^9.8.4",
+    "cypress": "^3.8.1",
+    "postcss-cli": "^7.1.1",
+    "tailwindcss": "^1.4.6"
   }
 }
