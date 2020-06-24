@@ -583,6 +583,22 @@ video {
   height: auto;
 }
 
+@font-face {
+  font-family: Open Sans;
+
+  font-weight: 400;
+
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+}
+
+@font-face {
+  font-family: Sahitya;
+
+  font-weight: 700;
+
+  src: url('https://fonts.googleapis.com/css2?family=Sahitya:wght@700&display=swap');
+}
+
 .container {
   width: 100%;
 }
@@ -6054,6 +6070,14 @@ video {
 .font-mono {
   font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
+}
+
+.font-body {
+  font-family: 'Open Sans';
+}
+
+.font-display {
+  font-family: Sahitya;
 }
 
 .font-hairline {
@@ -19809,6 +19833,14 @@ video {
   .sm\:font-mono {
     font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
+  }
+
+  .sm\:font-body {
+    font-family: 'Open Sans';
+  }
+
+  .sm\:font-display {
+    font-family: Sahitya;
   }
 
   .sm\:font-hairline {
@@ -33567,6 +33599,14 @@ video {
       monospace;
   }
 
+  .md\:font-body {
+    font-family: 'Open Sans';
+  }
+
+  .md\:font-display {
+    font-family: Sahitya;
+  }
+
   .md\:font-hairline {
     font-weight: 100;
   }
@@ -47323,6 +47363,14 @@ video {
       monospace;
   }
 
+  .lg\:font-body {
+    font-family: 'Open Sans';
+  }
+
+  .lg\:font-display {
+    font-family: Sahitya;
+  }
+
   .lg\:font-hairline {
     font-weight: 100;
   }
@@ -61077,6 +61125,14 @@ video {
   .xl\:font-mono {
     font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
+  }
+
+  .xl\:font-body {
+    font-family: 'Open Sans';
+  }
+
+  .xl\:font-display {
+    font-family: Sahitya;
   }
 
   .xl\:font-hairline {
