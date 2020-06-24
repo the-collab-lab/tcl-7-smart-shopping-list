@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../assets/main.css';
 import { useParams } from 'react-router-dom';
 import { getLocalToken } from '../lib/token.js';
 import { FirestoreDocument } from 'react-firestore';
@@ -44,8 +44,8 @@ function ItemDetailPage() {
                 <img src="/img/arrow_back-24px.svg" alt="back"></img>
               </Link>
             </nav>
-            <h1 className="b f1">{data.itemName}</h1>
-            <ul className="f5 gray">
+            <h1 className="font-display text-3xl font-bold">{data.itemName}</h1>
+            <ul className="font-body text-gray-700">
               <li>
                 Last purchase date: {getFormattedDate(data.lastPurchasedDate)}
               </li>
