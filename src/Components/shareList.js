@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Button, Form } from 'react-bootstrap';
 import { fb } from '../lib/firebase';
 import { setLocalToken } from '../lib/token.js';
 import { useHistory } from 'react-router-dom';
@@ -34,7 +33,7 @@ export function ShareList() {
   };
 
   return (
-    <Form onSubmit={handleSubmitShareCode} className="pa2">
+    <form onSubmit={handleSubmitShareCode} className="pa2">
       <p className="f3 pt2 deep-blue">
         You can also join an existing list by entering a share code below.
       </p>
@@ -53,8 +52,8 @@ export function ShareList() {
           Share Code
         </label>
       </div>
-      <Button className="pa2 white f2 b btn">Join Shopping List</Button>
-    </Form>
+      <button className="pa2 white f2 b btn">Join Shopping List</button>
+    </form>
   );
 }
 
