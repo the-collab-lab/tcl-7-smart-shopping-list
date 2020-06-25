@@ -33,7 +33,7 @@ function DeleteItem({ id }) {
       className="float-right"
       onClick={close}
     >
-      x
+      X
     </Button>
   );
 }
