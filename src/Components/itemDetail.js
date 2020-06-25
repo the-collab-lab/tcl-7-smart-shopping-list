@@ -47,7 +47,7 @@ function ItemDetailPage() {
             <h1 className="font-display text-3xl font-bold mb-2">
               {data.itemName}
             </h1>
-            <table className="table-auto font-body text-gray-700">
+            <table className="m-auto table-auto font-body text-gray-700">
               <tbody>
                 <tr>
                   <td className="border px-4 py-2 text-left">
