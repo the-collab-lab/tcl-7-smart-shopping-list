@@ -6,6 +6,7 @@ import { useState } from 'react';
 import calculateEstimate from '../lib/estimates.js';
 import { fb } from '../lib/firebase';
 import { Link } from 'react-router-dom';
+import DeleteItem from './deleteItem.js';
 import Footer from './footerNav.js';
 
 function EmptyList() {
@@ -137,8 +138,9 @@ function ItemRow(props) {
               : false
           }
         />
-        <Link to={`list-item/${item.id}`}>{item.itemName}</Link>
+        <Link to={`list-item/${item.id}`}>{item.itemName} </Link>
       </label>
+      <DeleteItem id={item.id} />
     </li>
   );
 }
