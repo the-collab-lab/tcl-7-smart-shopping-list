@@ -8,6 +8,7 @@ import { fb } from '../lib/firebase';
 import { Link } from 'react-router-dom';
 import DeleteItem from './deleteItem.js';
 import Footer from './footerNav.js';
+import '../assets/main.css';
 
 function EmptyList() {
   const history = useHistory();
