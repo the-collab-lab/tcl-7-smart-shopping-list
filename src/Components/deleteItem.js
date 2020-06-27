@@ -3,7 +3,7 @@ import '../App.css';
 import '../assets/main.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
-import { OutlineButton } from 'tailwind-react-ui';
+import { Button } from 'tailwind-react-ui';
 
 function DeleteItem({ id }) {
   const close = () => {
@@ -28,9 +28,9 @@ function DeleteItem({ id }) {
   };
 
   return (
-    <OutlineButton brand="danger" className="float-right" small onClick={close}>
+    <Button className="float-right" small onClick={close}>
       x
-    </OutlineButton>
+    </Button>
   );
 }
 
