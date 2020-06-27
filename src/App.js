@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main className="pt2 wallpaper">
+        <main className="pt-0 sm:pt-2 wallpaper">
           <Switch>
             <Route path="/list-item/:docId">
               <ItemDetailPage />
