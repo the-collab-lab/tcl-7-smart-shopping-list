@@ -214,7 +214,7 @@ function FullList(props) {
 
   return (
     <React.Fragment>
-      <div className="grocery-list">
+      <div className="font-display text-3xl font-bold mb-3">
         <h1>Groceries</h1>
         <ul className="tl f2 check-list">
           <li className="bg-white pa1 shadow">
