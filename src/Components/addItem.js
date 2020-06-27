@@ -56,29 +56,34 @@ function AddItem() {
 
   return (
     <React.Fragment>
-      <div className="bg-white container mt-3 mx-auto rounded shadow-lg max-w-screen-sm lg:max-w-screen-md px-6 py-4">
+      <div className="bg-white container sm:mt-3 mx-auto rounded shadow-lg xs:min-h-screen sm:min-h-0 max-w-screen-sm lg:max-w-screen-md px-6 py-3">
         <form onSubmit={addItem}>
-          <h1 className="font-bold font-display">
+          <h1 className="font-display text-3xl font-bold mb-3">
             Add an item to your shopping list!
           </h1>
-          <div className="input-field-hover py-4">
+          <div className="input-field-hover py-4 mb-4">
             <input
               id="itemName"
               type="text"
               name="itemName"
-              className="text-center bb bw1 b--gray py-3 f3"
+              className="text-center font-body p-3 shadow bg-gray-100 rounded-lg outline-none focus:bg-gray-200"
               autoCapitalize="none"
               onChange={updateInput}
               value={itemName}
               required
             />
-            <label htmlFor="itemName" className="tc gray f1 b hover py-1">
+            <label
+              htmlFor="itemName"
+              className="font-body font-semibold text-xl text-center text-gray-700 hover py-3"
+            >
               Name of Item
             </label>
           </div>
-          <label>How soon do you expect to buy this again?</label>
-          <div className="form-button flex flex-row py-3">
-            <label className="bg-light-green font-bold text-base text-blac p-3 flex-grow shadow-sm">
+          <label className="mt-3 font-body text-xl text-gray-700">
+            How soon do you expect to buy this again?
+          </label>
+          <div className="form-button flex flex-col sm:flex-col md:flex-row py-2">
+            <label className="bg-green-500 font-body font-semibold text-gray-800 text-lg p-3 flex-grow shadow-sm hover:bg-green-600">
               <input
                 type="radio"
                 value="7"
@@ -87,7 +92,7 @@ function AddItem() {
               />
               Soon
             </label>
-            <label className="bg-light-orange font-bold text-base text-black p-3 flex-grow shadow-sm">
+            <label className="bg-yellow-500 font-body font-semibold text-gray-800 text-lg p-3 flex-grow shadow-sm hover:bg-yellow-600">
               <input
                 type="radio"
                 value="14"
@@ -96,7 +101,7 @@ function AddItem() {
               />
               Pretty soon
             </label>
-            <label className="bg-light-red font-bold text-base text-black p-3 flex-grow shadow-sm">
+            <label className="bg-red-500 font-body font-semibold text-gray-800 text-lg p-3 flex-grow shadow-sm hover:bg-red-600">
               <input
                 type="radio"
                 value="30"
@@ -109,9 +114,9 @@ function AddItem() {
           </div>
           <button
             type="submit"
-            className="bg-green px-4 py-3 text-white text-base font-bold shadow-sm"
+            className="bg-green-700 text-white font-body font-bold text-lg w-full rounded-lg mt-4 mb-2 p-3 shadow-sm"
           >
-            Add It
+            Add Item
           </button>
           <br />
           {errorMsg ? (

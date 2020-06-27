@@ -111,16 +111,11 @@ footer {
 footer nav {
   display: flex;
   width: 100%;
-  background-color: #fbd490;
 }
 
 footer nav a {
   flex-grow: 1;
   padding: 10px;
-}
-
-footer nav a.active {
-  background-color: #e0b877;
 }
 
 footer nav a:first-of-type {
