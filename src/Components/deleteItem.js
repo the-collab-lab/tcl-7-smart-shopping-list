@@ -28,7 +28,7 @@ function DeleteItem({ id }) {
   };
 
   return (
-    <Button className="float-right" small onClick={close}>
+    <Button className="bg-white float-right" small onClick={close}>
       x
     </Button>
   );
