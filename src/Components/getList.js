@@ -117,10 +117,10 @@ function ItemRow(props) {
   };
 
   const frequencyColor = {
-    inactive: 'bg-gray',
-    Soon: 'bg-light-green',
-    'Kind of soon': 'bg-light-orange',
-    'Not soon': 'bg-light-red',
+    inactive: 'bg-gray-400',
+    Soon: 'bg-green-500',
+    'Kind of soon': 'bg-yellow-500',
+    'Not soon': 'bg-red-500',
   };
 
   return (
@@ -214,10 +214,10 @@ function FullList(props) {
 
   return (
     <React.Fragment>
-      <div className="font-display text-3xl font-bold mb-3">
+      <div className="font-display text-3xl font-bold mb-3 bg-white container sm:mt-3 mx-auto rounded shadow-lg xs:min-h-screen sm:min-h-0 max-w-screen-sm lg:max-w-screen-lg px-6 py-3">
         <h1>Groceries</h1>
-        <ul className="tl f2 check-list">
-          <li className="bg-white pa1 shadow">
+        <ul className="text-left font-body text-xl check-list">
+          <li className="bg-white p-3 shadow-lg">
             <div className="filter-input">
               <input
                 type="text"
