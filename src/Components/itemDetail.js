@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../assets/main.css';
 import { useParams } from 'react-router-dom';
 import { getLocalToken } from '../lib/token.js';
 import { FirestoreDocument } from 'react-firestore';
@@ -38,26 +38,43 @@ function ItemDetailPage() {
         return isLoading ? (
           <div>loading...</div>
         ) : (
-          <div className="shadow bg-white pa2">
+          <div className="bg-white m-auto rounded object-center shadow-lg max-w-screen-sm px-6 py-4">
             <nav className="pa1 flex">
               <Link to="/list-view">
                 <img src="/img/arrow_back-24px.svg" alt="back"></img>
               </Link>
             </nav>
-            <h1 className="b f1">{data.itemName}</h1>
-            <ul className="f5 gray">
-              <li>
-                Last purchase date: {getFormattedDate(data.lastPurchasedDate)}
-              </li>
-              <li>
-                Estimated number of days until the next purchase:{' '}
-                {getDaysToNextPurchase(data)}
-              </li>
-              <li>
-                Number of times the item has been purchase:{' '}
-                {data.numberOfPurchases}
-              </li>
-            </ul>
+            <h1 className="font-display text-3xl font-bold mb-2">
+              {data.itemName}
+            </h1>
+            <table className="m-auto table-auto font-body text-gray-700">
+              <tbody>
+                <tr>
+                  <td className="border px-4 py-2 text-left">
+                    Last purchase date
+                  </td>
+                  <td className="border px-4 py-2 text-right">
+                    {getFormattedDate(data.lastPurchasedDate)}
+                  </td>
+                </tr>
+                <tr className="bg-gray-100">
+                  <td className="border px-4 py-2 text-left">
+                    Estimated number of days until the next purchase
+                  </td>
+                  <td className="border px-4 py-2 text-right">
+                    {getDaysToNextPurchase(data)}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border px-4 py-2 text-left">
+                    Number of times the item has been purchase
+                  </td>
+                  <td className="border px-4 py-2 text-right">
+                    {data.numberOfPurchases}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         );
       }}

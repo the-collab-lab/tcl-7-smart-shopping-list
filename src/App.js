@@ -5,7 +5,6 @@ import { hasLocalToken, setLocalToken } from './lib/token.js';
 import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
-import { Button, Form } from 'react-bootstrap';
 import ItemDetailPage from './Components/itemDetail';
 
 import {
@@ -19,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <main className="pt2 wallpaper">
+        <main className="pt-0 sm:pt-2 wallpaper">
           <Switch>
             <Route path="/list-item/:docId">
               <ItemDetailPage />
@@ -62,17 +61,22 @@ function SignIn() {
   };
 
   return (
-    <div className="wrapper shadow bg-white brd pa2">
-      <Form className="pa2" onSubmit={handleSubmit}>
-        <h1 className="deep-blue f1 pa2 b">
+    <div className="bg-white container sm:mt-3 mx-auto rounded shadow-lg xs:min-h-screen sm:min-h-0 max-w-screen-sm lg:max-w-screen-md px-6 py-3">
+      <form className="p-4" onSubmit={handleSubmit}>
+        <h1 className="font-display text-3xl font-bold mb-3 p-4">
           Welcome to your smart shopping list!
         </h1>
-        <p className="deep-blue f3">Get started by creating a new list.</p>
-        <Button className="white f2 b btn" type="submit">
+        <p className="m-3 font-body text-xl text-gray-700">
+          Get started by creating a new list.
+        </p>
+        <button
+          className="bg-green-700 text-white font-body font-bold text-lg w-3/6 rounded-lg mb-2 p-3 shadow-sm"
+          type="submit"
+        >
           Create shopping list
-        </Button>
-      </Form>
-      <p className="line-text deep-blue">Or</p>
+        </button>
+      </form>
+      <p className="line-text text-gray-700">Or</p>
       <div>
         <ShareList />
       </div>

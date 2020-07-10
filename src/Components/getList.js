@@ -8,6 +8,7 @@ import { fb } from '../lib/firebase';
 import { Link } from 'react-router-dom';
 import DeleteItem from './deleteItem.js';
 import Footer from './footerNav.js';
+import '../assets/main.css';
 
 function EmptyList() {
   const history = useHistory();
@@ -17,13 +18,18 @@ function EmptyList() {
   }
 
   return (
-    <div className="bg-white shadow pa2">
-      <h1 className="b f1">Welcome to your shopping list!</h1>
-      <p>
+    <div className="bg-white container sm:mt-3 mx-auto rounded shadow-lg xs:min-h-screen sm:min-h-0 max-w-screen-sm lg:max-w-screen-md px-6 py-3">
+      <h1 className="font-display text-3xl font-bold mb-3">
+        Welcome to your shopping list!
+      </h1>
+      <p className="m-3 font-body text-xl text-gray-700">
         To get started add an item to your shopping list by clicking "add item
         below"
       </p>
-      <button onClick={handleClick} className="bg-green ph2 pv1 white f2 b">
+      <button
+        onClick={handleClick}
+        className="bg-green-700 text-white font-body font-bold text-lg w-full rounded-lg mb-2 p-3 shadow-sm"
+      >
         Add an item
       </button>
     </div>
@@ -116,28 +122,36 @@ function ItemRow(props) {
   };
 
   const frequencyColor = {
-    inactive: 'bg-gray',
-    Soon: 'bg-light-green',
-    'Kind of soon': 'bg-light-orange',
-    'Not soon': 'bg-light-red',
+    inactive: 'bg-gray-400',
+    Soon: 'bg-green-500',
+    'Kind of soon': 'bg-yellow-500',
+    'Not soon': 'bg-red-500',
   };
 
   return (
-    <li className={frequencyColor[getFrequency(item)] + ' pa1 shadow'}>
+    <li
+      className={
+        frequencyColor[getFrequency(item)] +
+        ' m-3 p-3 rounded shadow-sm font-body text-left text-lg text-gray-800'
+      }
+    >
       <label>
-        <input
-          type="checkbox"
-          aria-label={`${
-            getFrequency(item) === 'inactive' ? '' : 'Purchase'
-          } ${getFrequency(item)}`}
-          value={isChecked}
-          onChange={handleCheck}
-          defaultChecked={
-            item.lastPurchasedDate
-              ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
-              : false
-          }
-        />
+        <div className="inline-block mr-2">
+          <input
+            type="checkbox"
+            className="w-4 h-4 -mt-1"
+            aria-label={`${
+              getFrequency(item) === 'inactive' ? '' : 'Purchase'
+            } ${getFrequency(item)}`}
+            value={isChecked}
+            onChange={handleCheck}
+            defaultChecked={
+              item.lastPurchasedDate
+                ? Date.now() / 1000 - item.lastPurchasedDate.seconds < 86400
+                : false
+            }
+          />
+        </div>
         <Link to={`list-item/${item.id}`}>{item.itemName} </Link>
       </label>
       <DeleteItem id={item.id} />
@@ -213,18 +227,23 @@ function FullList(props) {
 
   return (
     <React.Fragment>
-      <div className="grocery-list">
-        <h1>Groceries</h1>
-        <ul className="tl f2 check-list">
-          <li className="bg-white pa1 shadow">
-            <div className="filter-input">
+      <div className="bg-white container sm:mt-3 mx-auto rounded shadow-lg xs:min-h-screen sm:min-h-0 max-w-screen-sm lg:max-w-screen-lg px-6 py-3">
+        <h1 className="font-display text-3xl font-bold mb-3">Grocery List</h1>
+        <ul>
+          <li>
+            <div className="filter-input font-body text-xl bg-gray-100 bg-white p-2 shadow-lg">
               <input
                 type="text"
                 placeholder="Filter List"
                 value={searchTerm}
                 onChange={handleChange}
               />
-              <button className="filter-button" onClick={clearSearch}>
+              <button
+                cursor="pointer"
+                type="button"
+                className="select-none inline-block leading-tight px-2 py-1 rounded no-underline bg-gray-200 hover:bg-gray-300"
+                onClick={clearSearch}
+              >
                 {' '}
                 X{' '}
               </button>

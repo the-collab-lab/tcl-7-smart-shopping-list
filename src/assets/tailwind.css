@@ -1,0 +1,17 @@
+@tailwind base;
+
+@font-face {
+  font-family: Open Sans;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+}
+
+@font-face {
+  font-family: Sahitya;
+  font-weight: 700;
+  src: url('https://fonts.googleapis.com/css2?family=Sahitya:wght@700&display=swap');
+}
+
+@tailwind components;
+
+@tailwind utilities;

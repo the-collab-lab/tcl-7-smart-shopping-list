@@ -1,8 +1,8 @@
 import React from 'react';
 import '../App.css';
+import '../assets/main.css';
 import { fb } from '../lib/firebase';
 import { getLocalToken } from '../lib/token.js';
-import { Button } from 'react-bootstrap';
 
 function DeleteItem({ id }) {
   const close = () => {
@@ -27,14 +27,15 @@ function DeleteItem({ id }) {
   };
 
   return (
-    <Button
-      variant="outline-info"
-      size="sm"
-      className="float-right"
+    <button
+      cursor="pointer"
+      type="button"
+      className="float-right font-body text-sm select-none inline-block leading-tight px-2 py-1 rounded no-underline bg-gray-200 shadow hover:bg-gray-300"
       onClick={close}
     >
-      X
-    </Button>
+      {' '}
+      X{' '}
+    </button>
   );
 }
 
