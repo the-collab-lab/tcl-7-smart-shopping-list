@@ -33,26 +33,31 @@ export function ShareList() {
   };
 
   return (
-    <form onSubmit={handleSubmitShareCode} className="pa2">
-      <p className="f3 pt2 deep-blue">
+    <form onSubmit={handleSubmitShareCode} className="p-1">
+      <p className="m-3 font-body text-xl text-gray-700">
         You can also join an existing list by entering a share code below.
       </p>
-      <div className="input-field-hover pv2">
+      <div className="input-field-hover py-4">
         <input
           id="share-code"
           type="text"
           name="shareCode"
-          className="tc bb bw1 b--gray pa1 f3"
+          className="text-center font-body p-3 shadow bg-gray-100 rounded-lg outline-none focus:bg-gray-200"
           autoCapitalize="none"
           onChange={event => setToken(event.target.value)}
           value={token}
           required
         />
-        <label htmlFor="share-code" className="tc gray f1 b hover">
+        <label
+          htmlFor="share-code"
+          className="font-body font-semibold text-xl text-center text-gray-700 hover py-3"
+        >
           Share Code
         </label>
       </div>
-      <button className="pa2 white f2 b btn">Join Shopping List</button>
+      <button className="bg-green-700 text-white font-body font-bold text-lg w-3/6 rounded-lg mb-2 p-3 shadow-sm">
+        Join Shopping List
+      </button>
     </form>
   );
 }

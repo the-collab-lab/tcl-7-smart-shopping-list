@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   purge: [],
   target: 'relaxed',
@@ -632,7 +634,7 @@ module.exports = {
     alignSelf: ['responsive'],
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'active-link'],
     backgroundOpacity: ['responsive', 'hover', 'focus'],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
@@ -725,5 +727,11 @@ module.exports = {
     transitionDelay: ['responsive'],
   },
   corePlugins: {},
-  plugins: [],
+  plugins: [
+    plugin(function({ addVariant, e }) {
+      addVariant('active-link', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.${e(`active-link${separator}${className}`)}.active`);
+      });
+    })
+  ],
 }
