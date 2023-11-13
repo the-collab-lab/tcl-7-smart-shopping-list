@@ -213,8 +213,9 @@ label.hover {
 /* backgrounds */
 
 .wallpaper {
-  background: url('/img/organic-veg.svg') #c6e2b2;
-  background-size: cover;
+  background-color: #c6e2b2;
+  /* background: url('/img/organic-veg.svg') #c6e2b2;
+  background-size: cover; */
 }
 
 .bg-white {
