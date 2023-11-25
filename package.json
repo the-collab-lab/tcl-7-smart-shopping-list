@@ -15,7 +15,7 @@
     "react-firestore": "^1.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
-    "tailwind-react-ui": "^0.8.1"
+    "tailwind-react-ui": "^3.3.5"
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
