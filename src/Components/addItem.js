@@ -7,6 +7,7 @@ import Footer from './footerNav.js';
 function AddItem() {
   const [itemName, setItemName] = useState('');
   const [purchaseFrequency, setPurchaseFrequency] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [lastPurchasedDate, setLastPurchasedDate] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
