@@ -6,6 +6,7 @@ import GetList from './Components/getList.js';
 import AddItem from './Components/addItem.js';
 import ShareList from './Components/shareList.js';
 import ItemDetailPage from './Components/itemDetail';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 import {
   BrowserRouter as Router,
@@ -33,6 +34,7 @@ function App() {
               <ShareList />
             </Route>
             <Route path="/">
+              <ArchivalNoticeModal />
               <Landing />
             </Route>
           </Switch>
